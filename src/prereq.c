@@ -3,12 +3,6 @@
 //
 
 #include "header.h"
-#include "ver.h"
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
-void close(int sockfd);
 
 printmenu(){
     system("clear");

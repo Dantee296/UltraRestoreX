@@ -5,6 +5,12 @@
 #ifndef SRC_HEADER_H
 #define SRC_HEADER_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <zconf.h>
+#include <string.h>
+#include "ver.h"
+
 #endif //SRC_HEADER_H
 
 char *concatenate(const char *a, const char *b, const char *c);

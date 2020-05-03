@@ -2,13 +2,8 @@
 // Created by 010010 on 03/05/2020.
 //
 
-#include "ios.h"
 #include "header.h"
-#include "ver.h"
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <zconf.h>
+#include "ios.h"
 
 //Pass a char array containing the volume name to create. The function will connect to the device usin
 int ios_makevol_apfs(char *volname){
@@ -58,4 +53,6 @@ int ios_mountdisk(char *diskid){
         //need code to determine what the final 2 disks are. Maybe use popen and read the output of grep.
         //or try to implement regex in the output..?
         //will hardcode directories for now but gotta fix...
+
+        
 }

@@ -1,12 +1,7 @@
 //
 // Created by 010010 on 03/05/2020.
 //
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <zconf.h>
 #include "header.h"
-#include "ver.h"
 #include "ios.h"
 
 const char *menuItems[] = {"Prerequisites",

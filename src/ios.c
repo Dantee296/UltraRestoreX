@@ -54,5 +54,5 @@ int ios_mountdisk(char *diskid){
         //or try to implement regex in the output..?
         //will hardcode directories for now but gotta fix...
 
-        
+
 }

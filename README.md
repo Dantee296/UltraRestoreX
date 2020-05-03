@@ -8,7 +8,7 @@ Is this complete right now - no. We have moved code from one of our incomplete t
 
 **This release features a previously unreleased method for completing the majority of the iOS install off-device. The RamDisk creation process can now be effectively skipped, saving a lot of time.**
 
-![alt text](https://github.com/DuffyAPP-IT/iBootX/blob/master/Screenshot_2020-04-14_at_00.26.42.png?raw=true)
+![alt text](https://github.com/DuffyAPP-IT/iBootX/blob/master/Screenshot_2020-04-14_at_00.26.42-2.png?raw=true)
 
 iBootX is a project, soon-to-be tool, that is designed to enable booting unsigned operating systems on modern iOS devices, for example the iPhone X. The document which will accompany this read-me details the process of ‘dual-booting’ a modern iOS device, by patching the relevant parts of the iOS Boot-Chain and utilising some inbuilt macOS functions for disk management.
 

@@ -38,8 +38,14 @@ int main() {
                 installer();
                 break;
             case 2:
-                makevol_apfs("SystemB");
-                makevol_apfs("DataB");
+                if(ios_makevol_apfs("SystemB")!=0){
+                    printf("An error occured..\n");
+                    exit(1);
+                }
+                if(ios_makevol_apfs("DataB")!=0){
+                    printf("An error occured..\n");
+                    exit(1);
+                }
                 break;
             default:
                 printf("\nOption Not Found\n");

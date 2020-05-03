@@ -7,4 +7,5 @@
 
 #endif //SRC_IOS_H
 
-void makevol_apfs(char *volname);
+int ios_makevol_apfs(char *volname);
+int ios_mountdisk(char *diskid);

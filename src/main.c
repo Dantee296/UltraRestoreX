@@ -22,7 +22,8 @@ int main() {
     char *optchar;
     printf("> ");
     fgets(&optchar, 50, stdin);
-    int opt = atoi(&optchar)-1;
+    int opt;
+    opt = atoi(&optchar);
 
     if (opt < ARRAY_SIZE(menuItems)){
         switch(opt){

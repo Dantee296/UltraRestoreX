@@ -11,8 +11,6 @@
 /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/main.c
 stdio.h
 -
-string.h
--
 stdlib.h
 -
 header.h

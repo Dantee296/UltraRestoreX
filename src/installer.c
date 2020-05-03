@@ -13,7 +13,7 @@ const char *appName[] = {"Brew",
                          "LibUSB",
                          "SSHPass",
                          "iPhone Tunnel",
-                         "testcom"};
+                         "ls"};
 
 const char *installComm[] = {"/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)",
                              "brew install libusb",
@@ -52,7 +52,7 @@ void installer(){
     printf("> ");
     fgets(&installindexc, 50, stdin);
     int installindex = atoi(&installindexc)-1;
-    if (installindex <= ARRAY_SIZE(appName)){
+    if (installindex < ARRAY_SIZE(appName)){
         install(appName[installindex]);
     } else{
         printf("Invalid ID\n");

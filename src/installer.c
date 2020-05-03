@@ -10,13 +10,13 @@
 #include <unistd.h>
 
 const char *appName[] = {"Brew",
-                         "libusb",
+                         "LibUSB",
                          "SSHPass",
                          "iPhone Tunnel",
                          "testcom"};
 
 const char *installComm[] = {"/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)",
-                             "libusb",
+                             "brew install libusb",
                              "brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb",
                              "curl -o iPhoneTunnel.zip https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/iphonetunnel-mac/iPhoneTunnel2.3-beta1.zip",
                              "ls -l /"};
@@ -40,7 +40,6 @@ install(char *install) {
             }
         }
     }
-    printf("invalid id\n");
 }
 
 void installer(){
@@ -52,8 +51,11 @@ void installer(){
     char *installindexc;
     printf("> ");
     fgets(&installindexc, 50, stdin);
-    printf("%s is the index", &installindexc);
     int installindex = atoi(&installindexc)-1;
-
-    install(appName[installindex]);
+    if (installindex <= ARRAY_SIZE(appName)){
+        install(appName[installindex]);
+    } else{
+        printf("Invalid ID\n");
+        exit(1);
+    }
 }

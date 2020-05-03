@@ -10,6 +10,6 @@
 
 int main() {
     printmenu();
-    install("SSHPass");
+    installer();
     return 0;
 }

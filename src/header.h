@@ -9,5 +9,6 @@
 
 char *concatenate(const char *a, const char *b, const char *c);
 install(char *install);
+void installer();
 #define ARRAY_SIZE(x) ( sizeof(x) / sizeof((x)[0]) )
 printmenu();

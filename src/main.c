@@ -10,6 +10,6 @@
 
 int main() {
     printmenu();
-    installer();
+    //installer();
     return 0;
 }

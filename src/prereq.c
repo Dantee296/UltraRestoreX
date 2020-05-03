@@ -21,14 +21,6 @@ char *concatenate(const char *a, const char *b, const char *c) {
     return res;
 }
 
-//int getarrsize(char *arrName){
-//    if (arrName != NULL){
-//        return sizeof(arrName) / sizeof(arrName[0]);
-//    } else{
-//        return 0;
-//    }
-//}
-
 printmenu(){
     system("clear");
     printf("-----------------------\n");

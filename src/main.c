@@ -3,7 +3,6 @@
 //
 
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 #include "header.h"
 #include "ver.h"
@@ -24,19 +23,19 @@ int main() {
     printf("> ");
     fgets(&optchar, 50, stdin);
     int opt = atoi(&optchar)-1;
+
     if (opt < ARRAY_SIZE(menuItems)){
-        //execute opt
         switch(opt){
             case 1:
                 installer();
                 break;
             default:
                 printf("Option Invalid");
+                exit(1);
         }
     } else{
         printf("Invalid ID\n");
         exit(1);
     }
-    //installer();
     return 0;
 }

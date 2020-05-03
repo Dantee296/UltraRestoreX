@@ -17,7 +17,13 @@ const char *menuItems[] = {"Prerequisites",
                          "Extract Virtual Install -> iOS",
                          "Patch Boot & Configure SEP -> iOS",
                          "Prepare Data Partition -> iOS",
-                         "Cleanup -> macOS"};
+                         "Cleanup -> macOS",
+                         "Retrieve SHSH2 -> macOS",
+                         "Retrieve Bootchain For Target -> macOS",
+                         //need to determine iOS version for correct method using systemversion.plist from rootfs.
+                         //make sure to extract before cleanup process..
+                         "Patch Bootchain Elements -> macOS",
+                         "Prepare Device"};
 
 int main() {
     printmenu();
@@ -43,6 +49,16 @@ int main() {
                     exit(1);
                 }
                 if(ios_makevol_apfs("DataB")!=0){
+                    printf("An error occured..\n");
+                    exit(1);
+                }
+                break;
+            case 3:
+                if(ios_makedir("/mnt1")!=0){
+                    printf("An error occured..\n");
+                    exit(1);
+                }
+                if(ios_makedir("/mnt2")!=0){
                     printf("An error occured..\n");
                     exit(1);
                 }

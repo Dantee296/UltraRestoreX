@@ -8,4 +8,5 @@
 #endif //SRC_IOS_H
 
 int ios_makevol_apfs(char *volname);
+int ios_makedir(char *absolutedirectory);
 int ios_mountdisk(char *diskid);

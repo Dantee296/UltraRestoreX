@@ -31,6 +31,7 @@ install(char *install) {
                 printf("Installing %s In Debug Mode\n", appName[i]);
                 char *com1 = installComm[i];
                 system(installComm[i]);
+                exit(0);
             }
             if (DEBUG == 0) {
                 printf("Installing %s\n", appName[i]);
@@ -39,6 +40,7 @@ install(char *install) {
             }
         }
     }
+    printf("invalid id\n");
 }
 
 void installer(){

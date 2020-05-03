@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <zconf.h>
 #include "header.h"
 #include "ver.h"
 
@@ -25,14 +26,15 @@ int main() {
     int opt;
     opt = atoi(&optchar);
 
-    if (opt < ARRAY_SIZE(menuItems)){
+    if (opt <= ARRAY_SIZE(menuItems)){
         switch(opt){
             case 1:
                 installer();
                 break;
             default:
-                printf("Option Invalid");
-                exit(1);
+                printf("\nOption Not Found\n");
+                sleep(2);
+                main();
         }
     } else{
         printf("Invalid ID\n");

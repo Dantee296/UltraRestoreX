@@ -8,6 +8,20 @@
 
 /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/header.h
 
+/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/installer.c
+header.h
+/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/header.h
+ver.h
+/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ver.h
+stdio.h
+-
+string.h
+-
+stdlib.h
+-
+unistd.h
+-
+
 /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/main.c
 stdio.h
 -
@@ -17,6 +31,18 @@ header.h
 /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/header.h
 ver.h
 /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ver.h
+
+/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/prereq.c
+header.h
+/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/header.h
+ver.h
+/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ver.h
+stdio.h
+-
+string.h
+-
+stdlib.h
+-
 
 /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ver.h
 

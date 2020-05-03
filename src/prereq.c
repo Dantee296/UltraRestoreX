@@ -25,5 +25,6 @@ printmenu(){
     system("clear");
     printf("-----------------------\n");
     printf ("Welcome To iBootX Version %d\n", VER);
+    printf ("Debug mode is %d\n", DEBUG);
     printf("-----------------------\n");
 }

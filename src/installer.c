@@ -22,7 +22,7 @@ const char *installComm[] = {"/bin/bash -c \"$(curl -fsSL https://raw.githubuser
                              "ls -l /"};
 
 //takes install arguement with App Name
-install(char *install) {
+install(const char *install) {
     for (int i = 0; i < ARRAY_SIZE(appName); i++) {
         //printf("%s", install);
         //!strcmp(string, strings[i])

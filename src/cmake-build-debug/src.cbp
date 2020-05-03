@@ -84,6 +84,12 @@
 		<Unit filename="/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/installer.c">
 			<Option target="src"/>
 		</Unit>
+		<Unit filename="/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ios.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ios.h">
+			<Option target="src"/>
+		</Unit>
 		<Unit filename="/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/main.c">
 			<Option target="src"/>
 		</Unit>

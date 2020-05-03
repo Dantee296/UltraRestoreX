@@ -150,6 +150,33 @@ installer.c.s:
 	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/installer.c.s
 .PHONY : installer.c.s
 
+ios.o: ios.c.o
+
+.PHONY : ios.o
+
+# target to build an object file
+ios.c.o:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/ios.c.o
+.PHONY : ios.c.o
+
+ios.i: ios.c.i
+
+.PHONY : ios.i
+
+# target to preprocess a source file
+ios.c.i:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/ios.c.i
+.PHONY : ios.c.i
+
+ios.s: ios.c.s
+
+.PHONY : ios.s
+
+# target to generate assembly for a file
+ios.c.s:
+	$(MAKE) -f CMakeFiles/src.dir/build.make CMakeFiles/src.dir/ios.c.s
+.PHONY : ios.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -216,6 +243,9 @@ help:
 	@echo "... installer.o"
 	@echo "... installer.i"
 	@echo "... installer.s"
+	@echo "... ios.o"
+	@echo "... ios.i"
+	@echo "... ios.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

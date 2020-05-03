@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/installer.c" "/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/cmake-build-debug/CMakeFiles/src.dir/installer.c.o"
+  "/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ios.c" "/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/cmake-build-debug/CMakeFiles/src.dir/ios.c.o"
   "/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/main.c" "/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/cmake-build-debug/CMakeFiles/src.dir/main.c.o"
   "/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/prereq.c" "/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/cmake-build-debug/CMakeFiles/src.dir/prereq.c.o"
   )

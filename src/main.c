@@ -7,11 +7,17 @@
 #include <zconf.h>
 #include "header.h"
 #include "ver.h"
+#include "ios.h"
 
-const char *menuItems[] = {"Prerequesites",
-                         "Option 2",
-                         "Option 3",
-                         "Option 4"};
+const char *menuItems[] = {"Prerequisites",
+                         "Generate System & Data Partitions -> iOS",
+                         "Create Mount Points & Mount -> iOS",
+                         "Prepare RootFS DMG -> macOS",
+                         "Virtual iOS Install -> macOS",
+                         "Extract Virtual Install -> iOS",
+                         "Patch Boot & Configure SEP -> iOS",
+                         "Prepare Data Partition -> iOS",
+                         "Cleanup -> macOS"};
 
 int main() {
     printmenu();
@@ -30,6 +36,10 @@ int main() {
         switch(opt){
             case 1:
                 installer();
+                break;
+            case 2:
+                makevol_apfs("SystemB");
+                makevol_apfs("DataB");
                 break;
             default:
                 printf("\nOption Not Found\n");

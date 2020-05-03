@@ -5,7 +5,13 @@ CMakeFiles/src.dir/installer.c.o: ../header.h
 CMakeFiles/src.dir/installer.c.o: ../installer.c
 CMakeFiles/src.dir/installer.c.o: ../ver.h
 
+CMakeFiles/src.dir/ios.c.o: ../header.h
+CMakeFiles/src.dir/ios.c.o: ../ios.c
+CMakeFiles/src.dir/ios.c.o: ../ios.h
+CMakeFiles/src.dir/ios.c.o: ../ver.h
+
 CMakeFiles/src.dir/main.c.o: ../header.h
+CMakeFiles/src.dir/main.c.o: ../ios.h
 CMakeFiles/src.dir/main.c.o: ../main.c
 CMakeFiles/src.dir/main.c.o: ../ver.h
 

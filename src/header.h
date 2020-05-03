@@ -10,5 +10,6 @@
 char *concatenate(const char *a, const char *b, const char *c);
 install(const char *install);
 void installer();
+int hasdeviceaccess();
 #define ARRAY_SIZE(x) ( sizeof(x) / sizeof((x)[0]) )
 printmenu();

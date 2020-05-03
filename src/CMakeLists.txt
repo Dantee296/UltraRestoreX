@@ -3,4 +3,4 @@ project(src C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(src main.c prereq.c header.h ver.h installer.c)
+add_executable(src main.c prereq.c header.h ver.h installer.c ios.c ios.h)

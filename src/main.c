@@ -51,12 +51,10 @@ int main() {
             case 3:
                 //Make mountpoints - Add check if folder exists, add to ibootxlib
                 if(ios_makedir("/mnt1")!=0){
-                    printf("An error occured..\n");
-                    exit(1);
+                    printf("Directory Already Exists.. Skipping\n");
                 }
                 if(ios_makedir("/mnt2")!=0){
-                    printf("An error occured..\n");
-                    exit(1);
+                    printf("Directory Already Exists.. Skipping\n");
                 }
                 char SystemB[300];
                 char DataB[300];
@@ -68,13 +66,17 @@ int main() {
                 strcpy(SystemB,ios_runc("ls /dev \| cat \| grep -o disk0s1s. \| tail -2 \| head -1"));
                 strtok(SystemB,"\n");
                 strcpy(DataB, ios_runc("ls /dev \| cat \| grep -o disk0s1s. \| tail -1"));
-                strtok(SystemB,"\n");
-                ios_mountdisk(SystemB,mnt1);
-                ios_mountdisk(DataB, mnt2);
+                strtok(DataB,"\n");
+                if(ios_mountdisk(SystemB,mnt1)!=0){
+                    printf("Mounting Error.. Reboot iPhone w/Checkra1n\n");
+                    exit(1);
+                }
+                if(ios_mountdisk(DataB,mnt2)!=0){
+                    printf("Mounting Error.. Reboot iPhone w/Checkra1n\n");
+                    exit(1);
+                }
                 break;
             case 4:
-                if(1==1){
-                }
                 break;
             default:
                 printf("\nOption Not Found\n");

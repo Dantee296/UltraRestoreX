@@ -5,7 +5,7 @@
 #include "header.h"
 #include "ios.h"
 
-//Pass a char array containing the volume name to create. The function will connect to the device usin
+//Pass a char array containing the volume name to create.
 int ios_makevol_apfs(char *volname){
     char *com1 = "sshpass -p alpine ssh root@127.0.0.1 -p 2222 newfs_apfs -A -v";
     char com2[50];
@@ -28,13 +28,8 @@ int ios_makevol_apfs(char *volname){
     }
 }
 
+//Make a directory.
 int ios_makedir(char *absolutedirectory){
-    char *com1 = "sshpass -p alpine ssh root@127.0.0.1 -p 2222 mkdir";
-    char com2[100];
-    strcpy(com2, absolutedirectory);
-    char commout[200];
-    sprintf(commout, "%s %s", com1, com2);
-
     //Exit code 1 if device cannot connect
     if (hasdeviceaccess() == 1){
         printf("Device Access Not Availible\n");
@@ -43,14 +38,25 @@ int ios_makedir(char *absolutedirectory){
         //Exit code 0 from hasdeviceaccess if can connect
     else if (hasdeviceaccess() == 0){
 //        printf("Connection Successful\n");
-        system(commout);
+        char *com1 = ("mkdir");
+        char *com2 = (">/dev/null 2>/dev/null\; echo \$?");
+        char dircheck[500];
+        sprintf(dircheck, "%s %s %s", com1, absolutedirectory, com2);
+        char *exitcodec = ios_runc(dircheck);
+        int exitcode = atoi(exitcodec);
+        if(exitcode==0){
+            return 0;
+        }
+        else{
+            return 1;
+        }
+
         sleep(2);
         return 0;
     }
 }
 
-
-//currently only returns one line output command.. remember escape key for pipes.
+//remember escape key for pipes and strtok for removing newlines to prevent multiple commands being executed.
 char *ios_runc(char *command){
     if (hasdeviceaccess()==1){
         printf("Device Access Not Availible\n");
@@ -71,6 +77,16 @@ char *ios_runc(char *command){
     }
 }
 
+//returns 0 on success 1 if dir already exists
+int ios_checkdirexists(char *dir){
+    char *com1 = ("mkdir");
+    char *com2 = (">/dev/null 2>/dev/null\; echo \$?");
+    char dircheck[500];
+    sprintf(dircheck, "%s %s %s", com1, dir, com2);
+    return atoi(ios_runc(dircheck));
+}
+
+//return 1 on error and 0 on success
 int ios_mountdisk(char *diskid, char *mntpnt){
     if (hasdeviceaccess()==1){
         printf("Device Access Not Availible\n");
@@ -78,8 +94,7 @@ int ios_mountdisk(char *diskid, char *mntpnt){
     }
     else if (hasdeviceaccess()==0){
         char commout[500];
-        sprintf(commout, "mount_apfs %s %s", diskid, mntpnt);
-        ios_runc(commout);
-        return 0;
+        sprintf(commout, "mount_apfs %s %s >/dev/null 2>/dev/null \;echo $?", diskid, mntpnt);
+        return atoi(ios_runc(commout));
     }
 }

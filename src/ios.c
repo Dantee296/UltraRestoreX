@@ -49,6 +49,28 @@ int ios_makedir(char *absolutedirectory){
     }
 }
 
+
+//currently only returns one line output command.. do not use pipes..
+char *ios_runc(char *command){
+    if (hasdeviceaccess()==1){
+        printf("Device Access Not Availible\n");
+        return 1;
+    }
+    else if (hasdeviceaccess() == 0){
+        char *com1 = "sshpass -p alpine ssh root@127.0.0.1 -p 2222";
+        char com2[800];
+        strcpy(com2, command);
+        char commout[800];
+        sprintf(commout, "%s %s", com1, com2);
+        char *com = commout;
+        char out[2048];
+        FILE *shell = popen(com, "r");
+        fgets(out, sizeof(out), shell);
+        pclose(shell);
+        return out;
+    }
+}
+
 int ios_mountdisk(char *diskid){
         //need code to determine what the final 2 disks are. Maybe use popen and read the output of grep.
         //or try to implement regex in the output..?

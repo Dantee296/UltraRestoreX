@@ -57,6 +57,18 @@ int main() {
                     printf("An error occured..\n");
                     exit(1);
                 }
+
+                char SystemB[300];
+                char DataB[300];
+                strcpy(SystemB,ios_runc("ls /dev \| cat \| grep -o disk0s1s. \| tail -2 \| head -1"));
+                strcpy(DataB, ios_runc("ls /dev \| cat \| grep -o disk0s1s. \| tail -1"));
+                printf("%s", SystemB);
+                printf("%s", DataB);
+
+                break;
+            case 4:
+                if(1==1){
+                }
                 break;
             default:
                 printf("\nOption Not Found\n");

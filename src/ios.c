@@ -50,7 +50,7 @@ int ios_makedir(char *absolutedirectory){
 }
 
 
-//currently only returns one line output command.. do not use pipes..
+//currently only returns one line output command.. remember escape key for pipes.
 char *ios_runc(char *command){
     if (hasdeviceaccess()==1){
         printf("Device Access Not Availible\n");
@@ -82,6 +82,4 @@ int ios_mountdisk(char *diskid, char *mntpnt){
         ios_runc(commout);
         return 0;
     }
-
-
 }

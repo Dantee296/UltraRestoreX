@@ -58,13 +58,13 @@ int main() {
                     printf("An error occured..\n");
                     exit(1);
                 }
-
                 char SystemB[300];
-                //char *SystemB = "disk1s8";
                 char DataB[300];
                 char *mnt1 = "/mnt1";
                 char *mnt2 = "/mnt2";
                 //implement strncpy
+                //could have issues with disk number above 10, experiement to see if .. works instead of . on low (below 10) partition count.
+                //will be fine for dual boot.
                 strcpy(SystemB,ios_runc("ls /dev \| cat \| grep -o disk0s1s. \| tail -2 \| head -1"));
                 strtok(SystemB,"\n");
                 strcpy(DataB, ios_runc("ls /dev \| cat \| grep -o disk0s1s. \| tail -1"));

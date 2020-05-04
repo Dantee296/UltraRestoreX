@@ -60,6 +60,7 @@ int main() {
 
                 char SystemB[300];
                 char DataB[300];
+                //implement strncpy
                 strcpy(SystemB,ios_runc("ls /dev \| cat \| grep -o disk0s1s. \| tail -2 \| head -1"));
                 strcpy(DataB, ios_runc("ls /dev \| cat \| grep -o disk0s1s. \| tail -1"));
                 printf("%s", SystemB);

@@ -4,21 +4,21 @@
 #include "header.h"
 #include "ios.h"
 
-const char *menuItems[] = {"Prerequisites",
-                         "Generate System & Data Partitions -> iOS",
-                         "Create Mount Points & Mount -> iOS",
-                         "Prepare RootFS DMG -> macOS",
-                         "Virtual iOS Install -> macOS",
-                         "Extract Virtual Install -> iOS",
-                         "Patch Boot & Configure SEP -> iOS",
-                         "Prepare Data Partition -> iOS",
-                         "Cleanup -> macOS",
-                         "Retrieve SHSH2 -> macOS",
-                         "Retrieve Bootchain For Target -> macOS",
+const char *menuItems[] = {"Prerequisites",  //done for the most-part
+                         "Generate System & Data Partitions -> iOS",  //ready
+                         "Create Mount Points & Mount -> iOS", //ready
+                         "Prepare RootFS DMG -> macOS", //port
+                         "Virtual iOS Install -> macOS", //port
+                         "Extract Virtual Install -> iOS", //port
+                         "Patch Boot & Configure SEP -> iOS", //port
+                         "Prepare Data Partition -> iOS", //port
+                         "Cleanup -> macOS", //to-do
+                         "Retrieve SHSH2 -> macOS", //to-do
+                         "Retrieve Bootchain For Target -> macOS", //to-do
                          //need to determine iOS version for correct method using systemversion.plist from rootfs.
                          //make sure to extract before cleanup process..
-                         "Patch Bootchain Elements -> macOS",
-                         "Prepare Device"};
+                         "Patch Bootchain Elements -> macOS", //to-do
+                         "Prepare Device"}; //port
 
 int main() {
     printmenu();

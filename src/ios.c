@@ -57,6 +57,7 @@ int ios_makedir(char *absolutedirectory){
 }
 
 //remember escape key for pipes and strtok for removing newlines to prevent multiple commands being executed.
+//returns char array of output. redirect output to silent and add '; echo $?' to return exit code.
 char *ios_runc(char *command){
     if (hasdeviceaccess()==1){
         printf("Device Access Not Availible\n");

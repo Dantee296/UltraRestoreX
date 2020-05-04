@@ -87,7 +87,8 @@ int ios_checkdirexists(char *dir){
     return atoi(ios_runc(dircheck));
 }
 
-//return 1 on error and 0 on success
+//return 1 on error and 0 on success pass diskid in the form disk0s1s3 and mntpnt as absolute directory
+//reference such as /mnt1
 int ios_mountdisk(char *diskid, char *mntpnt){
     if (hasdeviceaccess()==1){
         printf("Device Access Not Availible\n");

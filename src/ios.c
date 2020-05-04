@@ -71,10 +71,17 @@ char *ios_runc(char *command){
     }
 }
 
-int ios_mountdisk(char *diskid){
-        //need code to determine what the final 2 disks are. Maybe use popen and read the output of grep.
-        //or try to implement regex in the output..?
-        //will hardcode directories for now but gotta fix...
+int ios_mountdisk(char *diskid, char *mntpnt){
+    if (hasdeviceaccess()==1){
+        printf("Device Access Not Availible\n");
+        return 1;
+    }
+    else if (hasdeviceaccess()==0){
+        char commout[500];
+        sprintf(commout, "mount_apfs %s %s", diskid, mntpnt);
+        ios_runc(commout);
+        return 0;
+    }
 
 
 }

@@ -9,5 +9,5 @@
 
 int ios_makevol_apfs(char *volname);
 int ios_makedir(char *absolutedirectory);
-int ios_mountdisk(char *diskid);
+int ios_mountdisk(char *diskid, char *mntpnt);
 char *ios_runc(char *command);

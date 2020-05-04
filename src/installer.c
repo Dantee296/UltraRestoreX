@@ -33,11 +33,6 @@ install(const char *install) {
                 system(installComm[i]);
                 exit(0);
             }
-            if (DEBUG == 0) {
-                printf("Installing %s\n", appName[i]);
-                char *com1 = installComm[i];
-                execlp(com1, com1, NULL);
-            }
         }
     }
 }

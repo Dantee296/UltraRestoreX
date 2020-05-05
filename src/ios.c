@@ -33,6 +33,7 @@ int ios_makedir(char *absolutedirectory){
     //Exit code 1 if device cannot connect
     if (hasdeviceaccess() == 1){
         printf("Device Access Not Availible\n");
+        exit(1);
         return 1;
     }
         //Exit code 0 from hasdeviceaccess if can connect
@@ -98,5 +99,31 @@ int ios_mountdisk(char *diskid, char *mntpnt){
         char commout[500];
         sprintf(commout, "mount_apfs %s %s >/dev/null 2>/dev/null \;echo $?", diskid, mntpnt);
         return atoi(ios_runc(commout));
+    }
+}
+
+//need to improve process to return exit code
+int ios_asr_process(char *rootfsdmg, char *rootfsoutdmg){
+    char commout[500];
+    sprintf(commout,"asr -source %s -target %s --embed -erase -noprompt --chunkchecksum --puppetstrings >/dev/null", rootfsdmg, rootfsoutdmg);
+    FILE *file;
+    if((file = fopen(rootfsdmg,"r"))!=NULL)
+    {
+        fclose(file);
+        system(commout);
+        FILE *fileout;
+        if((fileout = fopen(rootfsoutdmg,"r"))!=NULL)
+        {
+            fclose(fileout);
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    else
+    {
+        return 1;
     }
 }

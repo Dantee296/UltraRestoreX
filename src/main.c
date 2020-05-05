@@ -77,6 +77,13 @@ int main() {
                 }
                 break;
             case 4:
+                printf("Preparing RootFS DMG...\n");
+                if(ios_asr_process("rootfsin.dmg","rootfsout.dmg")==0){
+                    printf("Great Success\n");
+                }
+                else{
+                    printf("Error Opening RootFS..\n");
+                }
                 break;
             default:
                 printf("\nOption Not Found\n");

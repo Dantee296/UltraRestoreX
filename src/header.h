@@ -29,3 +29,4 @@ printmenu();
 int macOS_runc(char *command);
 char *macos_run_e(char *command);
 int OSCopyFile(const char* source, const char* destination);
+int macOS_apfs_invert(char *diskid, char *dmg);

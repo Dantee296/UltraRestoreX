@@ -26,26 +26,6 @@ copyfile.h
 sys/sendfile.h
 -
 
-/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/installer.c
-header.h
-/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/header.h
-ver.h
-/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ver.h
-stdio.h
--
-string.h
--
-stdlib.h
--
-unistd.h
--
-
-/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ios.c
-header.h
-/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/header.h
-ios.h
-/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ios.h
-
 /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ios.h
 
 /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/main.c
@@ -53,10 +33,6 @@ header.h
 /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/header.h
 ios.h
 /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ios.h
-
-/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/prereq.c
-header.h
-/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/header.h
 
 /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ver.h
 

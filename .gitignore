@@ -5,3 +5,4 @@ LocalFiles/*
 .DS_Store
 *.dmg
 src/cmake-build-release/ibootx,internal284
+src/cmake-build-release/iOSout.tar.gz

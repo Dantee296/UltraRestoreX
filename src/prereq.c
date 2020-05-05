@@ -95,3 +95,16 @@ int OSCopyFile(const char* source, const char* destination){
 
     return result;
 }
+
+int macOS_apfs_invert(char *diskid, char *dmg){
+    char commout[800];
+    //add check for if apfs_invert binary is present
+    sprintf(commout, "sudo /System/Library/Filesystems/apfs.fs/Contents/Resources/apfs_invert -d %s -s 1 -n %s", diskid, dmg);
+    char *com = commout;
+    if (macOS_runc(com)==0){
+        return 0;
+    }
+    else{
+        return 1;
+    }
+}

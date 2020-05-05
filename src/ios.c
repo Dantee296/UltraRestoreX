@@ -128,3 +128,8 @@ int ios_asr_process(char *rootfsdmg, char *rootfsoutdmg){
     }
 }
 
+int ios_send_f(char *filetosend, char *remotedir){
+    //send file via scp
+
+}
+

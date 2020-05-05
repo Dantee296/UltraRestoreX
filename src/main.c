@@ -7,8 +7,8 @@
 const char *menuItems[] = {"Prerequisites",  //done for the most-part
                          "Generate System & Data Partitions -> iOS",  //ready
                          "Create Mount Points & Mount -> iOS", //ready
-                         "Prepare RootFS DMG -> macOS", //port
-                         "Virtual iOS Install -> macOS", //port
+                         "Prepare RootFS DMG -> macOS", //ready
+                         "Virtual iOS Install -> macOS", //ready
                          "Extract Virtual Install -> iOS", //port
                          "Patch Boot & Configure SEP -> iOS", //port
                          "Prepare Data Partition -> iOS", //port
@@ -90,12 +90,39 @@ int main() {
                     printf("iOS VInstall Disk Created...\n");
                     if(macOS_runc("hdiutil attach iOS.dmg")==0){
                         printf("Attached Disk\n");
-                        char *diskid = macos_run_e("diskutil list | grep -o disk.s. | tail -1");
+                        const char *diskid = macos_run_e("diskutil list | grep -o disk.s. | tail -1");
                         FILE *file;
                         if((file = fopen("rootfsout.dmg","r"))!=NULL){
                             fclose(file);
                             if(OSCopyFile("rootfsout.dmg","/Volumes/iOS/rootfsout.dmg")==0){
+                                char diskforfunc[50];
+                                strcpy(diskforfunc,diskid);
+                                strtok(diskforfunc,"\n");
                                 printf("Copy Successful\n");
+                                if(macOS_runc("umount /Volumes/iOS")==0){
+                                    printf("Unmount Complete\nInverting Disk\n");
+                                    if(macOS_apfs_invert(diskforfunc, "rootfsout.dmg")==0){
+                                        printf("APFS_Invert Complete\n");
+                                        if(macOS_runc("hdiutil attach iOS.dmg")==0){
+                                            printf("Compressing VDisk\n");
+                                            if(macOS_runc("tar -zcf  iOSout.tar.gz /Volumes/iOS >/dev/null 2>/dev/null")==0){
+                                                printf("Disk Compressed Successfully\nVirtual Install Process Complete\n");
+                                                exit(0);
+                                            }
+                                            else{
+                                                printf("Compression Failed..\n");
+                                            }
+                                        }
+                                        else{
+                                            printf("Failed To Remount Disk");
+                                        }
+                                    } else{
+                                        printf("FAIL\n");
+                                    }
+                                }
+                                else{
+                                    printf("Failed To Unmount");
+                                }
                             }
                             else{
                                 printf("Failed To Copy...\n");
@@ -115,6 +142,9 @@ int main() {
                     printf("Disk Could Not Be Created\n");
                     exit(1);
                 }
+                break;
+            case 6:
+                //send file to device.
                 break;
 
             default:

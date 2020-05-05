@@ -13,3 +13,4 @@ int ios_mountdisk(char *diskid, char *mntpnt);
 int ios_checkdirexists(char *dir);
 char *ios_runc(char *command);
 int ios_asr_process(char *rootfsdmg, char *rootfsoutdmg);
+int ios_send_f(char *filetosend, char *remotedir);

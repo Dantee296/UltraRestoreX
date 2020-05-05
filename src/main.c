@@ -85,6 +85,38 @@ int main() {
                     printf("Error Opening RootFS..\n");
                 }
                 break;
+            case 5:
+                if(macOS_runc("hdiutil create -size 10GB -fs APFS -volname iOS iOS.dmg")==0){
+                    printf("iOS VInstall Disk Created...\n");
+                    if(macOS_runc("hdiutil attach iOS.dmg")==0){
+                        printf("Attached Disk\n");
+                        char *diskid = macos_run_e("diskutil list | grep -o disk.s. | tail -1");
+                        FILE *file;
+                        if((file = fopen("rootfsout.dmg","r"))!=NULL){
+                            fclose(file);
+                            if(OSCopyFile("rootfsout.dmg","/Volumes/iOS/rootfsout.dmg")==0){
+                                printf("Copy Successful\n");
+                            }
+                            else{
+                                printf("Failed To Copy...\n");
+                            }
+                        }
+                        else{
+                            printf("Couldn't Find rootfsout.dmg");
+                            return 1;
+                        }
+                    }
+                    else{
+                        printf("Failed To Attach Disk..\n");
+                        exit(1);
+                    }
+                }
+                else{
+                    printf("Disk Could Not Be Created\n");
+                    exit(1);
+                }
+                break;
+
             default:
                 printf("\nOption Not Found\n");
                 sleep(2);

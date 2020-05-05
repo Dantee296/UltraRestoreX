@@ -3,3 +3,5 @@
 /.DS_Store
 LocalFiles/*
 .DS_Store
+*.dmg
+src/cmake-build-release/ibootx,internal284

@@ -158,3 +158,10 @@ int ios_send_f(char *filetosend, char *remotedir){
 
 }
 
+int ios_ver_check(){
+    //add checks to pull iOS version, maybe gotta use grep somewhere, uname?
+    //remember to atoi the output when returning as int.
+    //return should be 9,10,11,12,13 as examples.
+    return atoi(13);
+}
+

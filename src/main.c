@@ -171,7 +171,7 @@ int main() {
                 //use partial zip download to retrieve certain directory.
                 break;
             case 12:
-                //patch bootchain elemements making sure correct tool is used
+                //patch bootchain elements making sure correct tool is used
                 break;
             case 13:
                 //device prep

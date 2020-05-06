@@ -9,7 +9,7 @@ const char *menuItems[] = {"Prerequisites",  //done for the most-part
                          "Create Mount Points & Mount -> iOS", //ready
                          "Prepare RootFS DMG -> macOS", //ready
                          "Virtual iOS Install -> macOS", //ready
-                         "Extract Virtual Install -> iOS", //port
+                         "Extract Virtual Install -> iOS", //ready
                          "Patch Boot & Configure SEP -> iOS", //port
                          "Prepare Data Partition -> iOS", //port
                          "Cleanup -> macOS", //to-do
@@ -145,8 +145,37 @@ int main() {
                 break;
             case 6:
                 //send file to device.
+                printf("Sending...\nPlease Wait\n");
+                if((ios_send_f("iOSout.tar.gz","/mnt1")==0)){
+                    printf("Succesfully Sent VInstall To Device..\nExtracting..\n");
+                    if (atoi(ios_runc("cd /mnt1 \; tar -xvf iOSout.tar.gz —-strip-components=2 >/dev/null 2>/dev/null \; echo $?"))==0){
+                        printf("Extract Process Complete!\n");
+                    }
+                } else{
+                    printf("Error Sending VInstall..\n");
+                }
                 break;
-
+            case 7:
+                //patch fstab and configure SEP
+                break;
+            case 8:
+                //prepare data partition
+                break;
+            case 9:
+                //cleanup script cleans all files that are not necessary...
+                break;
+            case 10:
+                //use tsschecker or something to download an shsh2 for use
+                break;
+            case 11:
+                //use partial zip download to retrieve certain directory.
+                break;
+            case 12:
+                //patch bootchain elemements making sure correct tool is used
+                break;
+            case 13:
+                //device prep
+                break;
             default:
                 printf("\nOption Not Found\n");
                 sleep(2);

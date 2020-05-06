@@ -129,7 +129,32 @@ int ios_asr_process(char *rootfsdmg, char *rootfsoutdmg){
 }
 
 int ios_send_f(char *filetosend, char *remotedir){
-    //send file via scp
+
+    if (hasdeviceaccess()==1){
+        printf("Device Access Not Availible\n");
+        return 1;
+    }
+    else if (hasdeviceaccess() == 0){
+        //verify file to send exists
+        FILE *fileout;
+        if((fileout = fopen(filetosend,"r"))!=NULL)
+        {
+            fclose(fileout);
+            char commout[800];
+            sprintf(commout, "sshpass -p alpine scp -P 2222 %s root@127.0.0.1:%s \; echo $?", filetosend, remotedir);
+            char *com = commout;
+            char out[2048];
+            FILE *shell = popen(com, "r");
+            fgets(out, sizeof(out), shell);
+            pclose(shell);
+            return atoi(out);
+        }
+        else
+        {
+            return 1;
+        }
+
+    }
 
 }
 

@@ -7,6 +7,9 @@
 #define DEBUG 1
 #define IOS 13
 
+#define TRUE 0
+#define FALSE 1
+
 #ifndef SRC_VER_H
 #define SRC_VER_H
 

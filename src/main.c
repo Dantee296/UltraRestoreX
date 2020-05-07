@@ -157,6 +157,7 @@ int main() {
                 break;
             case 7:
                 //patch fstab and configure SEP
+//                printf("%d",ios_ver_check());
                 break;
             case 8:
                 //prepare data partition

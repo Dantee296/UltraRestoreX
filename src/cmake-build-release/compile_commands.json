@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/cmake-build-release",
+  "command": "/usr/bin/gcc   -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk   -std=gnu99 -o CMakeFiles/src.dir/main.c.o   -c /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/main.c",
+  "file": "/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/main.c"
+},
+{
+  "directory": "/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/cmake-build-release",
+  "command": "/usr/bin/gcc   -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk   -std=gnu99 -o CMakeFiles/src.dir/prereq.c.o   -c /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/prereq.c",
+  "file": "/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/prereq.c"
+},
+{
+  "directory": "/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/cmake-build-release",
+  "command": "/usr/bin/gcc   -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk   -std=gnu99 -o CMakeFiles/src.dir/installer.c.o   -c /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/installer.c",
+  "file": "/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/installer.c"
+},
+{
+  "directory": "/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/cmake-build-release",
+  "command": "/usr/bin/gcc   -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk   -std=gnu99 -o CMakeFiles/src.dir/ios.c.o   -c /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ios.c",
+  "file": "/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ios.c"
+}
+]

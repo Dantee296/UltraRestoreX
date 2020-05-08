@@ -298,7 +298,7 @@ int main() {
                 break;
             case 11:
                 //use tsschecker or something to download an shsh2 for use
-                
+                //add tsschecker to installer func
                 break;
             case 12:
                 //use partial zip download to retrieve certain directory.

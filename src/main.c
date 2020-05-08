@@ -294,12 +294,14 @@ int main() {
                     }
                     printf("Disk Space +1\n");
                 }
-                //use tsschecker or something to download an shsh2 for use
+
                 break;
             case 11:
-                //use partial zip download to retrieve certain directory.
+                //use tsschecker or something to download an shsh2 for use
+                
                 break;
             case 12:
+                //use partial zip download to retrieve certain directory.
                 //patch bootchain elements making sure correct tool is used
                 break;
             case 13:

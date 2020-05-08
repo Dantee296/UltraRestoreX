@@ -9,6 +9,7 @@ const char *menuItems[] = {"Prerequisites",  //done for the most-part
                          "Create Mount Points & Mount -> iOS", //ready
                          "Prepare RootFS DMG -> macOS", //ready
                          "Virtual iOS Install -> macOS", //ready
+                         "Send Virtual Install -> iOS", //ready
                          "Extract Virtual Install -> iOS", //ready
                          "Patch Boot & Configure SEP -> iOS", //port
                          "Prepare Data Partition -> iOS", //port
@@ -18,7 +19,8 @@ const char *menuItems[] = {"Prerequisites",  //done for the most-part
                          //need to determine iOS version for correct method using systemversion.plist from rootfs.
                          //make sure to extract before cleanup process..
                          "Patch Bootchain Elements -> macOS", //to-do
-                         "Prepare Device"}; //port
+                         "Prepare Device",
+                         "Remount - TempFunc"}; //port
 
 int main() {
     printmenu();
@@ -46,6 +48,9 @@ int main() {
                 if(ios_makevol_apfs("DataB")!=0){
                     printf("An error occured..\n");
                     exit(1);
+                } else{
+                    printf("Great Success\n");
+                    exit(0);
                 }
                 break;
             case 3:
@@ -86,6 +91,7 @@ int main() {
                 }
                 break;
             case 5:
+                printf("Generating iOS VDisk\n");
                 if(macOS_runc("hdiutil create -size 10GB -fs APFS -volname iOS iOS.dmg")==0){
                     printf("iOS VInstall Disk Created...\n");
                     if(macOS_runc("hdiutil attach iOS.dmg")==0){
@@ -100,11 +106,11 @@ int main() {
                                 strtok(diskforfunc,"\n");
                                 printf("Copy Successful\n");
                                 if(macOS_runc("umount /Volumes/iOS")==0){
-                                    printf("Unmount Complete\nInverting Disk\n");
+                                    printf("Unmount Complete\nInverting Disk\nEnter User Password:\n");
                                     if(macOS_apfs_invert(diskforfunc, "rootfsout.dmg")==0){
                                         printf("APFS_Invert Complete\n");
                                         if(macOS_runc("hdiutil attach iOS.dmg")==0){
-                                            printf("Compressing VDisk\n");
+                                            printf("Compressing VDisk - This Can Take A While..\n");
                                             if(macOS_runc("tar -zcf  iOSout.tar.gz /Volumes/iOS >/dev/null 2>/dev/null")==0){
                                                 printf("Disk Compressed Successfully\nVirtual Install Process Complete\n");
                                                 exit(0);
@@ -147,19 +153,76 @@ int main() {
                 //send file to device.
                 printf("Sending...\nPlease Wait\n");
                 if((ios_send_f("iOSout.tar.gz","/mnt1")==0)){
-                    printf("Succesfully Sent VInstall To Device..\nExtracting..\n");
-                    if (atoi(ios_runc("cd /mnt1 \; tar -xvf iOSout.tar.gz —-strip-components=2 >/dev/null 2>/dev/null \; echo $?"))==0){
-                        printf("Extract Process Complete!\n");
-                    }
+                    printf("Succesfully Sent VInstall To Device..\n");
                 } else{
                     printf("Error Sending VInstall..\n");
+                    exit(1);
                 }
                 break;
             case 7:
-                //patch fstab and configure SEP
+                printf("Extracting iOS VDisk\n");
+                if (atoi(ios_runc("tar -xvf /mnt1/iOSout.tar.gz --strip-components=2 -C /mnt1 >/dev/null 2>/dev/null \; echo $?"))==0){
+                    printf("Extract Successfull\n");
+                }
+                else{
+                    printf("Error Extracting\n");
+                    exit(1);
+                }
                 break;
             case 8:
+                //patch fstab and configure SEP
+                if(ios_rec_f("/private/etc/fstab","fstab-bak")==0){
+                    printf("Device FSTAB Backed Up To iBootX Dir..\n");
+                    if (macOS_runc("cp fstab-bak fstab")==0){
+                        //original data collect
+                        //origvar stores original var from fstab.
+//                      char *origvar = macos_run_e("cat fstab-bak | grep '/private/var apfs' | grep -o disk0s1s.");
+                        char *origvar = "disk0s1s2";
+                        //origsys stores original sys from fstab.
+                        char *origsys = "disk0s1s1";
+                        printf("Original SYS DETECTED -> %s\n",origsys);
+                        printf("Original Var DETECTED -> %s\n",origvar);
+                        printf("DSX Support ENABLED\n");
+                        //target data collect
+                        char tvar[300];
+                        char tsys[300];
+                        strcpy(tsys,ios_runc("ls /dev \| cat \| grep -o disk0s1s. \| tail -2 \| head -1"));
+                        strtok(tsys,"\n");
+                        strcpy(tvar, ios_runc("ls /dev \| cat \| grep -o disk0s1s. \| tail -1"));
+                        strtok(tvar,"\n");
+                        printf("Target SYS DETECTED -> %s\n", tsys);
+                        printf("Target Var DETECTED -> %s\n", tvar);
+                        //patch
+                        printf("Patching...\n");
+                        if(ios_fstab_p("fstab",origsys,tsys)==0){
+                            printf("Patch FSTAB Success!\n");
+                        } else{
+                            printf("PATCH FAIL");
+                        }
+                        if(ios_fstab_p("fstab",origvar,tvar)==0){
+                            printf("Patch FSTAB Success!\n");
+                        } else{
+                            printf("PATCH FAIL");
+                        }
+                    }
+                    else{
+                        printf("Could Not Retrieve & Backup FSTAB\n");
+                        exit(1);
+                    }
+                    }
+                printf("SEP\n");
+                if(ios_sep_mov("/mnt1")==0){
+                    printf("SEP Config Complete\n");
+                }
+                else{
+                    printf("SEP Config FAIL\n");
+                }
+                printf("%d\n", ios_ver_check());
+                break;
                 //prepare data partition
+                printf("PRINTING NEWSYS\n");
+                system("sshpass -p alpine ssh root@127.0.0.1 -p 2222 ls -l /");
+                sleep(20);
                 break;
             case 9:
                 //cleanup script cleans all files that are not necessary...
@@ -175,6 +238,28 @@ int main() {
                 break;
             case 13:
                 //device prep
+                break;
+            case 15:
+                //temp func for disk remount..
+                if(1==1){
+                    char SystemB[300];
+                    char DataB[300];
+                    char *mnt1 = "/mnt1";
+                    char *mnt2 = "/mnt2";
+                    strcpy(SystemB,ios_runc("ls /dev \| cat \| grep -o disk0s1s. \| tail -2 \| head -1"));
+                    strtok(SystemB,"\n");
+                    strcpy(DataB, ios_runc("ls /dev \| cat \| grep -o disk0s1s. \| tail -1"));
+                    strtok(DataB,"\n");
+                    if(ios_mountdisk(SystemB,mnt1)!=0){
+                        printf("Mounting Error.. Reboot iPhone w/Checkra1n\n");
+                        exit(1);
+                    }
+                    if(ios_mountdisk(DataB,mnt2)!=0){
+                        printf("Mounting Error.. Reboot iPhone w/Checkra1n\n");
+                        exit(1);
+                    }
+                }
+
                 break;
             default:
                 printf("\nOption Not Found\n");

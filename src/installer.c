@@ -15,7 +15,7 @@ const char *appName[] = {"Brew",
                          "iPhone Tunnel",
                          "ls"};
 
-const char *installComm[] = {"/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)",
+const char *installComm[] = {"echo Install from Brew.SH (this opt has an issue sorry! progress with\nthe rest of the prereqs\nAfter installing from https://brew.sh)",
                              "brew install libusb",
                              "brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb",
                              "curl -o iPhoneTunnel.zip https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/iphonetunnel-mac/iPhoneTunnel2.3-beta1.zip",
@@ -29,9 +29,9 @@ install(const char *install) {
         if (!strcmp(install, appName[i])) {
             if (DEBUG == 1) {
                 printf("Installing %s In Debug Mode\n", appName[i]);
-                char *com1 = installComm[i];
                 system(installComm[i]);
-                exit(0);
+                sleep(4); // user can read output before recursive func call.
+                installer();
             }
         }
     }

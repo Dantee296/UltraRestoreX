@@ -1,0 +1,6 @@
+/dev/disk0s1s1 / apfs ro 0 1
+/dev/disk0s1s3 /private/xarts apfs rw,nosuid,nodev 0 1
+/dev/disk0s1s2 /private/var apfs rw,nosuid,nodev 0 2
+/dev/disk0s1s4 /private/var/wireless/baseband_data apfs rw,nosuid,nodev,nobrowse 0 2
+/dev/disk0s1s5 /private/var/hardware apfs rw,nosuid,nodev,nobrowse 0 2
+/dev/disk0s1s6 /private/var/MobileSoftwareUpdate apfs rw,nosuid,nodev,nobrowse 0 2

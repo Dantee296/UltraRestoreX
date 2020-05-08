@@ -14,4 +14,7 @@ int ios_checkdirexists(char *dir);
 char *ios_runc(char *command);
 int ios_asr_process(char *rootfsdmg, char *rootfsoutdmg);
 int ios_send_f(char *filetosend, char *remotedir);
+int ios_rec_f(char *remotefiledir, char *localfname);
+int ios_fstab_p(char *fstabloc,char *fromval,char *toval);
+int ios_sep_mov(char *newmnt);
 int ios_ver_check();

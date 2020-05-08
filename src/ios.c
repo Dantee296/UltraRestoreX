@@ -66,12 +66,12 @@ char *ios_runc(char *command){
     }
     else if (hasdeviceaccess() == 0){
         char *com1 = "sshpass -p alpine ssh root@127.0.0.1 -p 2222";
-        char com2[800];
+        char com2[2400];
         strcpy(com2, command);
-        char commout[800];
+        char commout[2400];
         sprintf(commout, "%s %s", com1, com2);
         char *com = commout;
-        char out[2048];
+        char out[4048];
         FILE *shell = popen(com, "r");
         fgets(out, sizeof(out), shell);
         pclose(shell);
@@ -158,10 +158,46 @@ int ios_send_f(char *filetosend, char *remotedir){
 
 }
 
+//pull file from device using scp
+int ios_rec_f(char *remotefiledir, char *localfname){
+    if (hasdeviceaccess()==1){
+        printf("Device Access Not Availible\n");
+        return 1;
+    }
+    else if (hasdeviceaccess() == 0){
+        char commout[800];
+        sprintf(commout, "sshpass -p alpine scp -r -P 2222 root@127.0.0.1:%s %s \; echo $?", remotefiledir, localfname);
+        char *com = commout;
+        char out[2048];
+        FILE *shell = popen(com, "r");
+        fgets(out, sizeof(out), shell);
+        pclose(shell);
+        return atoi(out);
+    }
+    else
+    {
+        return 1;
+    }
+    }
+
+int ios_fstab_p(char *fstabloc,char *fromval,char *toval){
+    //for command to patch concat
+    char comm[900];
+    sprintf(comm,"sed -i '' 's/%s/%s/g' %s",fromval, toval, fstabloc);
+    return macOS_runc(comm);
+}
+
+//example ios_sep_mov("/mnt1");
+int ios_sep_mov(char *newmnt){
+    char comm[900];
+    //add check for mount point exists.
+    sprintf(comm,"cp -a /usr/local %s/usr/local >/dev/null 2>/dev/null \; echo $?",newmnt);
+    return atoi(ios_runc(comm));
+}
+
 int ios_ver_check(){
     //add checks to pull iOS version, maybe gotta use grep somewhere, uname?
     //remember to atoi the output when returning as int.
     //return should be 9,10,11,12,13 as examples.
-    return atoi(13);
+    return atoi(ios_runc("sw_vers \| grep ProductVersion \| grep -o '[1][0-4]'"));
 }
-

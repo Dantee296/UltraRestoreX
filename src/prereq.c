@@ -55,12 +55,12 @@ int macOS_runc(char *command){
 }
 
 char *macos_run_e(char *command){
-        char com2[800];
+        char com2[1024];
         strcpy(com2, command);
-        char commout[800];
+        char commout[1024];
         sprintf(commout, "%s", com2);
         char *com = commout;
-        char out[2048];
+        char out[4096];
         FILE *shell = popen(com, "r");
         fgets(out, sizeof(out), shell);
         pclose(shell);

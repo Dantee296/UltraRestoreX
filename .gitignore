@@ -6,3 +6,5 @@ LocalFiles/*
 *.dmg
 src/cmake-build-release/ibootx,internal284
 src/cmake-build-release/iOSout.tar.gz
+src/cmake-build-debug/iOSout.tar.gz
+src/cmake-build-debug/dev

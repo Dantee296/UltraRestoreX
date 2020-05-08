@@ -4,14 +4,14 @@
 #include "header.h"
 #include "ios.h"
 
-const char *menuItems[] = {"Prerequisites",  //done for the most-part
+const char *menuItems[] = {"Prerequisites",  //ready for now..
                          "Generate System & Data Partitions -> iOS",  //ready
                          "Create Mount Points & Mount -> iOS", //ready
                          "Prepare RootFS DMG -> macOS", //ready
                          "Virtual iOS Install -> macOS", //ready
                          "Send Virtual Install -> iOS", //ready
                          "Extract Virtual Install -> iOS", //ready
-                         "Patch Boot & Configure SEP -> iOS", //port
+                         "Patch Boot & Configure SEP -> iOS", //ready
                          "Prepare Data Partition -> iOS", //port
                          "Cleanup -> macOS", //to-do
                          "Retrieve SHSH2 -> macOS", //to-do
@@ -211,8 +211,28 @@ int main() {
                     }
                     }
                 printf("SEP\n");
-                if(ios_sep_mov("/mnt1")==0){
+                if(ios_sep_c("/mnt1")==0){
                     printf("SEP Config Complete\n");
+                    printf("BASEBAND\n");
+                    if(ios_bb_c("/mnt1")==0){
+                        printf("BB Config Complete\n");
+                        //remove old fstab and send new fstab
+                        printf("Sending FSTAB..\n");
+                        if(atoi(ios_runc("rm /mnt1/private/etc/fstab \; echo $?"))==0){
+                            if(ios_send_f("fstab","/mnt1/private/etc/fstab")==0){
+                                printf("FSTAB Sent\n");
+                            }
+                            else{
+                                printf("Couldnt Find FSTAB..\n");
+                            }
+                        }
+                        else{
+                            printf("Couldnt Find Old FSTAB\n");
+                        }
+                    }
+                    else{
+                        printf("BB FAIL\n");
+                    }
                 }
                 else{
                     printf("SEP Config FAIL\n");

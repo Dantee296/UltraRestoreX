@@ -188,7 +188,14 @@ int ios_fstab_p(char *fstabloc,char *fromval,char *toval){
 }
 
 //example ios_sep_mov("/mnt1");
-int ios_sep_mov(char *newmnt){
+int ios_sep_c(char *newmnt){
+    char comm[900];
+    //add check for mount point exists.
+    sprintf(comm,"cp -a /usr/standalone/firmware/sep* %s/usr/standalone >/dev/null 2>/dev/null \; echo $?",newmnt);
+    return atoi(ios_runc(comm));
+}
+
+int ios_bb_c(char *newmnt){
     char comm[900];
     //add check for mount point exists.
     sprintf(comm,"cp -a /usr/local %s/usr/local >/dev/null 2>/dev/null \; echo $?",newmnt);

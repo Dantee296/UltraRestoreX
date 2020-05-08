@@ -20,7 +20,7 @@ const char *menuItems[] = {"Prerequisites",  //ready for now..
                          //make sure to extract before cleanup process..
                          "Patch Bootchain Elements -> macOS", //to-do
                          "Prepare Device",
-                         "Remount - TempFunc"}; //port
+                         "Remount - TempFunc"}; //debug-ready
 
 int main() {
     printmenu();
@@ -245,6 +245,22 @@ int main() {
                 sleep(20);
                 break;
             case 9:
+                printf("Prepping Data Partition\n");
+                //add extra checks to ensure disk is mounted, maybe grep df for this check..
+                if(atoi(ios_runc("mv /mnt1/private/var/* /mnt2 >/dev/null 2>/dev/null \; echo $?"))==0){
+                    printf("Operation Complete\nDEBUG copying KB\n");
+                    if(atoi(ios_runc("cp -a /var/keybags /mnt2"))==0){
+                        printf("KB success\n");
+                    }
+                    else{
+                        printf("debug kb copy failed.. or already run");
+                    }
+                }
+                else{
+                    printf("Operation Has Already Been Run.. Or Some Other Error..\n");
+                }
+
+
                 //cleanup script cleans all files that are not necessary...
                 break;
             case 10:

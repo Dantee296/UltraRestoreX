@@ -129,7 +129,6 @@ int ios_asr_process(char *rootfsdmg, char *rootfsoutdmg){
 }
 
 int ios_send_f(char *filetosend, char *remotedir){
-
     if (hasdeviceaccess()==1){
         printf("Device Access Not Availible\n");
         return 1;
@@ -180,6 +179,7 @@ int ios_rec_f(char *remotefiledir, char *localfname){
     }
     }
 
+//patch fstab locally after using ios_rec_f to pull fstab
 int ios_fstab_p(char *fstabloc,char *fromval,char *toval){
     //for command to patch concat
     char comm[900];
@@ -195,6 +195,7 @@ int ios_sep_c(char *newmnt){
     return atoi(ios_runc(comm));
 }
 
+//^
 int ios_bb_c(char *newmnt){
     char comm[900];
     //add check for mount point exists.
@@ -202,6 +203,7 @@ int ios_bb_c(char *newmnt){
     return atoi(ios_runc(comm));
 }
 
+//returns major ios version as int
 int ios_ver_check(){
     //add checks to pull iOS version, maybe gotta use grep somewhere, uname?
     //remember to atoi the output when returning as int.

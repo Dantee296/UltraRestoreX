@@ -259,11 +259,41 @@ int main() {
                 else{
                     printf("Operation Has Already Been Run.. Or Some Other Error..\n");
                 }
-
-
                 //cleanup script cleans all files that are not necessary...
                 break;
             case 10:
+                if(1==1){
+                    FILE *fileout;
+                    if((fileout = fopen("iOS.dmg","r"))!=NULL)
+                    {
+                        fclose(fileout);
+                        if(macOS_runc("rm iOS.dmg")==0){
+                            printf("Cleaned iOS.dmg\n");
+                        }
+                    }
+                    if((fileout = fopen("rootfsout.dmg","r"))!=NULL)
+                    {
+                        fclose(fileout);
+                        if(macOS_runc("rm rootfsout.dmg")==0){
+                            printf("Cleaned rootfsout.dmg\n");
+                        }
+                    }
+                    if((fileout = fopen("fstab","r"))!=NULL)
+                    {
+                        fclose(fileout);
+                        if(macOS_runc("rm fstab")==0){
+                            printf("Cleaned new FSTAB // Preserved Backup\n");
+                        }
+                    }
+                    if((fileout = fopen("iOSout.tar.gz","r"))!=NULL)
+                    {
+                        fclose(fileout);
+                        if(macOS_runc("rm iOSout.tar.gz")==0){
+                            printf("Cleaned iOSout.tar.gz\n");
+                        }
+                    }
+                    printf("Disk Space +1\n");
+                }
                 //use tsschecker or something to download an shsh2 for use
                 break;
             case 11:

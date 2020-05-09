@@ -14,8 +14,8 @@ const char *menuItems[] = {"Prerequisites",  //ready for now..
                          "Patch Boot & Configure SEP -> iOS", //ready
                          "Prepare Data Partition -> iOS", //ready
                          "Cleanup -> macOS", //ready
-                         "Retrieve SHSH2 -> macOS", //in-progress
-                         "Retrieve Bootchain For Target -> macOS", //to-do
+                         "Retrieve SHSH2 -> macOS", //ready
+                         "Retrieve Bootchain For Target -> macOS", //to-do -- rely on user pasting files in the target directory
                          //need to determine iOS version for correct method using systemversion.plist from rootfs.
                          //make sure to extract before cleanup process..
                          "Patch Bootchain Elements -> macOS", //to-do
@@ -23,6 +23,11 @@ const char *menuItems[] = {"Prerequisites",  //ready for now..
                          "Remount - TempFunc"}; //debug-ready
 
 int main() {
+    //var declarations
+    char pecid[300];
+    char ptype[300];
+
+
     printmenu();
     printf("\nMain Menu:\n");
     printf("");
@@ -120,14 +125,14 @@ int main() {
                                             }
                                         }
                                         else{
-                                            printf("Failed To Remount Disk");
+                                            printf("Failed To Remount Disk\n");
                                         }
                                     } else{
                                         printf("FAIL\n");
                                     }
                                 }
                                 else{
-                                    printf("Failed To Unmount");
+                                    printf("Failed To Unmount\n");
                                 }
                             }
                             else{
@@ -135,7 +140,7 @@ int main() {
                             }
                         }
                         else{
-                            printf("Couldn't Find rootfsout.dmg");
+                            printf("Couldn't Find rootfsout.dmg\n");
                             return 1;
                         }
                     }
@@ -299,15 +304,44 @@ int main() {
             case 11:
                 //use tsschecker or something to download an shsh2 for use
                 //add tsschecker to installer func
+                printf("Fetching Device ECID..\n");
                 if(hasdeviceaccess()==0){
                     if(ios_ecid_grab()!=1){
-                        printf("FOUND ECID -> %s",ios_ecid_grab());
+                        printf("Found Valid ECID!\n");
+                        //store valid product ecid
+                        //pecid stored at top of main
+                        //stop using strcpy
+                        strcpy(pecid,ios_ecid_grab());
+                        //remove newlines
+                        strtok(pecid,"\n");
                     } else{
-                        printf("ERROR GRABBING ECID -> :-(");
+                        printf("Failed To Grab ECID..\n");
+                        exit(1);
                     }
                 }
                 else{
-                    printf("Device Access Could Not Be Established.. Check iPhone Tunnel");
+                    printf("Device Access Could Not Be Established.. Check iPhone Tunnel\n");
+                    exit(1);
+                }
+                printf("Fetching Product Type..\n");
+                if(hasdeviceaccess()==0){
+                    if(ios_ptype_grab()!=1){
+                        printf("Found Valid Product Type!\n");
+                        //stores found device type
+                        //ptype defined at top of main
+                        //stop using strcpy
+                        strcpy(ptype, ios_ptype_grab());
+                        //remove newlines
+                        strtok(ptype,"\n");
+                    } else{
+                        printf("Failed To Find Valid Product Type\n");
+                    }
+                }
+
+                if((ios_blob_fetch(ptype,pecid)==0)){
+                    printf("Save SHSH2 Success!\n");
+                } else{
+                    printf("TSSChecker ERROR\n");
                 }
                 break;
             case 12:
@@ -329,11 +363,11 @@ int main() {
                     strcpy(DataB, ios_runc("ls /dev \| cat \| grep -o disk0s1s. \| tail -1"));
                     strtok(DataB,"\n");
                     if(ios_mountdisk(SystemB,mnt1)!=0){
-                        printf("Mounting Error.. Reboot iPhone w/Checkra1n\n");
+                        printf("Error/Already Mounted\n");
                         exit(1);
                     }
                     if(ios_mountdisk(DataB,mnt2)!=0){
-                        printf("Mounting Error.. Reboot iPhone w/Checkra1n\n");
+                        printf("Error/Already Mounted\n");
                         exit(1);
                     }
                 }

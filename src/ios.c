@@ -224,6 +224,32 @@ char *ios_ecid_grab(){
         }
 }
 
+char *ios_ptype_grab(){
+    if (macOS_runc("ideviceinfo | grep ProductType | grep -o 'iPhone.*'")==0){
+        return macos_run_e("ideviceinfo | grep ProductType | grep -o 'iPhone.*'");
+    }
+    else{
+        return 1;
+    }
+}
+
+int *ios_blob_fetch(char *ptype, char *eciddec){
+    FILE *fileout;
+    //check tsschecker is present
+    if((fileout = fopen("tsschecker","r"))!=NULL)
+    {
+        fclose(fileout);
+        //store command to exec
+        char comm[800];
+        sprintf(comm,"./tsschecker -s -l -e %s -d %s", eciddec, ptype);
+        if(macOS_runc(comm)==0){
+            return 0;
+        }
+    } else{
+        return 1;
+        printf("Cannot Find TSSChecker..\n");
+    }
+}
 //returns major ios version as int
 int ios_ver_check(){
     //add checks to pull iOS version, maybe gotta use grep somewhere, uname?

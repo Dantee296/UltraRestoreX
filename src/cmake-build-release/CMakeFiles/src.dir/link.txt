@@ -1,0 +1,1 @@
+/usr/bin/gcc -s -O3 -DNDEBUG -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/src.dir/main.c.o CMakeFiles/src.dir/prereq.c.o CMakeFiles/src.dir/installer.c.o CMakeFiles/src.dir/ios.c.o  -o src 

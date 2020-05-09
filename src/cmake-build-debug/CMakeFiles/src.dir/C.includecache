@@ -26,6 +26,12 @@ copyfile.h
 sys/sendfile.h
 -
 
+/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ios.c
+header.h
+/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/header.h
+ios.h
+/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ios.h
+
 /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/ios.h
 
 /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/main.c

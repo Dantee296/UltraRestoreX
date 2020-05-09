@@ -3,7 +3,7 @@
 // This header file should be included in all C files and defines version information and other key parameters.
 //
 
-#define VER 1
+#define VER 02
 #define DEBUG 1
 #define IOS 13
 

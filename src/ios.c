@@ -216,8 +216,8 @@ int ios_bb_c(char *newmnt){
 }
 
 char *ios_ecid_grab(){
-        if (macOS_runc("ideviceinfo | grep UniqueChipID | grep -o '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'")==0){
-            return macos_run_e("ideviceinfo | grep UniqueChipID | grep -o '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'");
+        if (macOS_runc("ideviceinfo | grep UniqueChipID | grep -o '[0-9][0-9][0-9][0-9][0-9][0-9][0-9]*'")==0){
+            return macos_run_e("ideviceinfo | grep UniqueChipID | grep -o '[0-9][0-9][0-9][0-9][0-9][0-9][0-9]*'");
         }
         else{
             return 1;
@@ -233,15 +233,27 @@ char *ios_ptype_grab(){
     }
 }
 
-int *ios_blob_fetch(char *ptype, char *eciddec){
+//grab board config
+char *ios_bconf_grab(){
+    if (macOS_runc("ideviceinfo | grep HardwareModel | cut -f2- -d' '")==0){
+        return macos_run_e("ideviceinfo | grep HardwareModel | cut -f2- -d' '");
+    }
+    else{
+        return 1;
+    }
+}
+
+int *ios_blob_fetch(char *ptype, char *eciddec, char *boardconf){
     FILE *fileout;
     //check tsschecker is present
     if((fileout = fopen("tsschecker","r"))!=NULL)
     {
         fclose(fileout);
         //store command to exec
-        char comm[800];
-        sprintf(comm,"./tsschecker -s -l -e %s -d %s", eciddec, ptype);
+        char comm[1200];
+        //implement boardconfig for devices w tsmc/samsung -- done needs testing
+
+        sprintf(comm,"./tsschecker -s -l -e %s -d %s --boardconfig %s", eciddec, ptype, boardconf);
         if(macOS_runc(comm)==0){
             return 0;
         }

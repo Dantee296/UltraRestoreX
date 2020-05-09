@@ -15,18 +15,16 @@ const char *menuItems[] = {"Prerequisites",  //ready for now..
                          "Prepare Data Partition -> iOS", //ready
                          "Cleanup -> macOS", //ready
                          "Retrieve SHSH2 -> macOS", //ready
-                         "Prepare IPSW -> macOS", //to-do -- rely on user pasting files in the target directory
-                         //need to determine iOS version for correct method using systemversion.plist from rootfs.
-                         //make sure to extract before cleanup process..
+                         "Prepare IPSW -> macOS", //ready
                          "Patch Bootchain Elements -> macOS", //to-do
-                         "Prepare Device",
+                         "Prepare Device", //ready
                          "Remount - TempFunc"}; //debug-ready
 
 int main() {
     //var declarations
-    char pecid[300];
-    char ptype[300];
-
+    char pecid[500];
+    char ptype[500];
+    char boardconf[500];
 
     printmenu();
     printf("\nMain Menu:\n");
@@ -302,8 +300,6 @@ int main() {
 
                 break;
             case 11:
-                //use tsschecker or something to download an shsh2 for use
-                //add tsschecker to installer func
                 printf("Fetching Device ECID..\n");
                 if(hasdeviceaccess()==0){
                     if(ios_ecid_grab()!=1){
@@ -312,17 +308,20 @@ int main() {
                         //pecid stored at top of main
                         //stop using strcpy
                         strcpy(pecid,ios_ecid_grab());
+                        printf("B-STRTOK %s\n",pecid);
                         //remove newlines
                         strtok(pecid,"\n");
+                        printf("A-STRTOK %s\n",pecid);
                     } else{
                         printf("Failed To Grab ECID..\n");
                         exit(1);
                     }
-                }
-                else{
+                } else{
                     printf("Device Access Could Not Be Established.. Check iPhone Tunnel\n");
                     exit(1);
                 }
+
+
                 printf("Fetching Product Type..\n");
                 if(hasdeviceaccess()==0){
                     if(ios_ptype_grab()!=1){
@@ -338,12 +337,29 @@ int main() {
                     }
                 }
 
-                if((ios_blob_fetch(ptype,pecid)==0)){
+
+                printf("Fetching Board Config..\n");
+                if(hasdeviceaccess()==0){
+                    if(ios_bconf_grab()!=1){
+                        printf("Found Valid Board Config!\n");
+                        //stores found device type
+                        //ptype defined at top of main
+                        //stop using strcpy
+                        strcpy(boardconf, ios_bconf_grab());
+                        //remove newlines
+                        strtok(boardconf,"\n");
+                    } else{
+                        printf("Failed To Find Valid Board Configuration\n");
+                    }
+                }
+
+                if((ios_blob_fetch(ptype,pecid,boardconf)==0)){
                     printf("Save SHSH2 Success!\n");
                 } else{
                     printf("TSSChecker ERROR\n");
                 }
                 break;
+
             case 12:
                 printf("Extracting IPSW..");
                 if (macOS_runc("mv *.ipsw ipsw.zip")==0){
@@ -354,11 +370,81 @@ int main() {
                         strcpy(rootfs, macos_run_e("find . -xdev -type f -size +1G | grep dmg"));
                         strtok(rootfs,"\n");
                         printf("ROOTFS ID'd as %s", rootfs);
-                        //rename rootfs command
+                        //rootfs move command
                         char rrootfscom[800];
                         sprintf(rrootfscom,"mv %s rootfsin.dmg",rootfs);
                         if(macOS_runc(rrootfscom)==0){
-                            printf("Prep 1 Complete!\n");
+                            printf("Prep Stage 1 Complete!\n");
+                            //clean unnecessary data.. no verification necessary
+                            macOS_runc("rm -rf ./fw/__MACOSX");
+
+                            //find ibss
+                            printf("Finding iBSS\n");
+                            char ibss[500];
+                            strcpy(ibss, macos_run_e("find . -xdev -type f -name '*.im4p' | grep iBSS"));
+                            strtok(ibss,"\n");
+                            printf("iBSS ID'd as %s\n", ibss);
+                            //ibss move command
+                            char ibsscom[800];
+                            sprintf(ibsscom,"mv %s ibssin",ibss);
+                            if(macOS_runc(ibsscom)==0){
+                                printf("iBSS!\n");
+                                //find ibec
+                                printf("Finding ibec\n");
+                                char ibec[500];
+                                strcpy(ibec, macos_run_e("find . -xdev -type f -name '*.im4p' | grep iBEC"));
+                                strtok(ibec,"\n");
+                                printf("iBEC ID'd as %s\n", ibec);
+                                //ibec move command
+                                char ibeccom[800];
+                                sprintf(ibeccom,"mv %s ibecin",ibec);
+                                if(macOS_runc(ibeccom)==0){
+                                    printf("iBEC!\n");
+                                    //find kcache
+                                    printf("Finding kcache\n");
+                                    char kcache[500];
+                                    strcpy(kcache, macos_run_e("find . -xdev -type f -name 'kernelcache*'"));
+                                    strtok(kcache,"\n");
+                                    printf("kcache ID'd as %s\n", kcache);
+                                    //kcache move command
+                                    char kcachecom[800];
+                                    sprintf(kcachecom,"mv %s kcachein",kcache);
+                                    if(macOS_runc(kcachecom)==0){
+                                        printf("kcache!\n");
+                                        //find dtre
+                                        printf("Finding DTRE\n");
+                                        char dtre[500];
+                                        strcpy(dtre, macos_run_e("find . -xdev -type f -name '*.im4p' | grep DeviceTree"));
+                                        strtok(dtre,"\n");
+                                        printf("dtre ID'd as %s\n", dtre);
+                                        //dtre move command
+                                        char dtrecom[800];
+                                        sprintf(dtrecom,"mv %s dtrein",dtre);
+                                        if(macOS_runc(dtrecom)==0){
+                                            printf("DTRE!\n");
+                                            //need to add trustcache code
+                                        }
+                                        else{
+                                            printf("Couldnt Find DTRE..\n");
+                                            exit(1);
+                                        }
+                                    }
+                                    else{
+                                        printf("Couldnt Find kcache..\n");
+                                        exit(1);
+                                    }
+                                }
+                                else{
+                                    printf("Couldnt Find iBEC..\n");
+                                    exit(1);
+                                }
+                            }
+                            else{
+                                printf("Couldnt Find iBSS..\n");
+                                exit(1);
+                            }
+                            //find trustcache if target is 13,n,above ( take val from rootfs name )
+
                         } else{
                             printf("Something went wrong..");
                         }
@@ -366,17 +452,11 @@ int main() {
                 } else{
                     printf("IPSW Not Found..\n");
                 }
-
-
-
-
-
-
                 //use partial zip download to retrieve certain directory.
                 //patch bootchain elements making sure correct tool is used
                 break;
             case 13:
-                //device prep
+                //patch-bootchain
                 break;
             case 15:
                 //temp func for disk remount..

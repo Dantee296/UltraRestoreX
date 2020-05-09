@@ -18,4 +18,5 @@ int ios_rec_f(char *remotefiledir, char *localfname);
 int ios_fstab_p(char *fstabloc,char *fromval,char *toval);
 int ios_sep_c(char *newmnt);
 int ios_bb_c(char *newmnt);
+char *ios_ecid_grab();
 int ios_ver_check();

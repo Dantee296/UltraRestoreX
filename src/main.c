@@ -12,9 +12,9 @@ const char *menuItems[] = {"Prerequisites",  //ready for now..
                          "Send Virtual Install -> iOS", //ready
                          "Extract Virtual Install -> iOS", //ready
                          "Patch Boot & Configure SEP -> iOS", //ready
-                         "Prepare Data Partition -> iOS", //port
-                         "Cleanup -> macOS", //to-do
-                         "Retrieve SHSH2 -> macOS", //to-do
+                         "Prepare Data Partition -> iOS", //ready
+                         "Cleanup -> macOS", //ready
+                         "Retrieve SHSH2 -> macOS", //in-progress
                          "Retrieve Bootchain For Target -> macOS", //to-do
                          //need to determine iOS version for correct method using systemversion.plist from rootfs.
                          //make sure to extract before cleanup process..
@@ -299,6 +299,16 @@ int main() {
             case 11:
                 //use tsschecker or something to download an shsh2 for use
                 //add tsschecker to installer func
+                if(hasdeviceaccess()==0){
+                    if(ios_ecid_grab()!=1){
+                        printf("FOUND ECID -> %s",ios_ecid_grab());
+                    } else{
+                        printf("ERROR GRABBING ECID -> :-(");
+                    }
+                }
+                else{
+                    printf("Device Access Could Not Be Established.. Check iPhone Tunnel");
+                }
                 break;
             case 12:
                 //use partial zip download to retrieve certain directory.
@@ -327,7 +337,6 @@ int main() {
                         exit(1);
                     }
                 }
-
                 break;
             default:
                 printf("\nOption Not Found\n");

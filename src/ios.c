@@ -215,6 +215,15 @@ int ios_bb_c(char *newmnt){
     }
 }
 
+char *ios_ecid_grab(){
+        if (macOS_runc("ideviceinfo | grep UniqueChipID | grep -o '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'")==0){
+            return macos_run_e("ideviceinfo | grep UniqueChipID | grep -o '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'");
+        }
+        else{
+            return 1;
+        }
+}
+
 //returns major ios version as int
 int ios_ver_check(){
     //add checks to pull iOS version, maybe gotta use grep somewhere, uname?

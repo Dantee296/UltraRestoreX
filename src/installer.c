@@ -13,13 +13,15 @@ const char *appName[] = {"Brew",
                          "LibUSB",
                          "SSHPass",
                          "iPhone Tunnel",
-                         "ls"};
+                         "libimobiledevice",
+                         "ideviceinstaller"};
 
 const char *installComm[] = {"echo Install from Brew.SH (this opt has an issue sorry! progress with\nthe rest of the prereqs\nAfter installing from https://brew.sh)",
                              "brew install libusb",
                              "brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb",
                              "curl -o iPhoneTunnel.zip https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/iphonetunnel-mac/iPhoneTunnel2.3-beta1.zip",
-                             "ls -l /"};
+                             "brew install libimobiledevice",
+                             "brew install ideviceinstaller"};
 
 //takes install arguement with App Name
 install(const char *install) {

@@ -1,1 +1,0 @@
-/dev/disk0s1s80 / apfs ro 0 1

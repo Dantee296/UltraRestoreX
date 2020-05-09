@@ -15,7 +15,7 @@ const char *menuItems[] = {"Prerequisites",  //ready for now..
                          "Prepare Data Partition -> iOS", //ready
                          "Cleanup -> macOS", //ready
                          "Retrieve SHSH2 -> macOS", //ready
-                         "Retrieve Bootchain For Target -> macOS", //to-do -- rely on user pasting files in the target directory
+                         "Prepare IPSW -> macOS", //to-do -- rely on user pasting files in the target directory
                          //need to determine iOS version for correct method using systemversion.plist from rootfs.
                          //make sure to extract before cleanup process..
                          "Patch Bootchain Elements -> macOS", //to-do
@@ -345,6 +345,33 @@ int main() {
                 }
                 break;
             case 12:
+                printf("Extracting IPSW..");
+                if (macOS_runc("mv *.ipsw ipsw.zip")==0){
+                    macOS_runc("rm -rf fw; mkdir fw");
+                    if (macOS_runc("cd fw; unzip ../ipsw.zip")==0){
+                        printf("Extracted IPSW!\nFinding RootFS..\n");
+                        char rootfs[500];
+                        strcpy(rootfs, macos_run_e("find . -xdev -type f -size +1G | grep dmg"));
+                        strtok(rootfs,"\n");
+                        printf("ROOTFS ID'd as %s", rootfs);
+                        //rename rootfs command
+                        char rrootfscom[800];
+                        sprintf(rrootfscom,"mv %s rootfsin.dmg",rootfs);
+                        if(macOS_runc(rrootfscom)==0){
+                            printf("Prep 1 Complete!\n");
+                        } else{
+                            printf("Something went wrong..");
+                        }
+                    }
+                } else{
+                    printf("IPSW Not Found..\n");
+                }
+
+
+
+
+
+
                 //use partial zip download to retrieve certain directory.
                 //patch bootchain elements making sure correct tool is used
                 break;

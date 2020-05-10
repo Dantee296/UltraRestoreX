@@ -1,17 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=gcc -DCMAKE_C_FLAGS=-s -G "CodeBlocks - Unix Makefiles" /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src
--- The C compiler identification is AppleClang 11.0.3.11030032
--- Check for working C compiler: /usr/bin/gcc
--- Check for working C compiler: /usr/bin/gcc -- works
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Detecting C compile features
--- Detecting C compile features - done
+"/Users/jamesduffy/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/201.7223.86/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" /Users/jamesduffy/Documents/GitHub/iBootX/src
 -- Configuring done
 -- Generating done
-CMake Warning:
-  Manually-specified variables were not used by the project:
-
-    CMAKE_CXX_COMPILER
-
-
--- Build files have been written to: /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/cmake-build-release
+-- Build files have been written to: /Users/jamesduffy/Documents/GitHub/iBootX/src/cmake-build-release

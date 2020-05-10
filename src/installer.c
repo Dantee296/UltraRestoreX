@@ -46,7 +46,7 @@ install(const char *install) {
 
 void installer(){
     printmenu();
-    printf("Prerequesite Installer - Please Choose From The List Below:\n");
+    printf("Prerequisite Installer - Please Choose From The List Below:\n");
     for (int i = 0; i < ARRAY_SIZE(appName); i++) {
         printf("%d: %s\n", i+1, appName[i]);
     }

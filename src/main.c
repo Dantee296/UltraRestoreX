@@ -59,10 +59,10 @@ int main() {
             case 3:
                 //Make mountpoints - Add check if folder exists, add to ibootxlib
                 if(ios_makedir("/mnt1")!=0){
-                    printf("Directory Already Exists.. Skipping\n");
+                    printf("Directory Already Exists, Skipping\n");
                 }
                 if(ios_makedir("/mnt2")!=0){
-                    printf("Directory Already Exists.. Skipping\n");
+                    printf("Directory Already Exists, Skipping\n");
                 }
                 char SystemB[300];
                 char DataB[300];
@@ -119,11 +119,11 @@ int main() {
                                                 exit(0);
                                             }
                                             else{
-                                                printf("Compression Failed..\n");
+                                                printf("Compression Failed.\n");
                                             }
                                         }
                                         else{
-                                            printf("Failed To Remount Disk\n");
+                                            printf("Failed Remounting Disk\n");
                                         }
                                     } else{
                                         printf("FAIL\n");
@@ -134,16 +134,16 @@ int main() {
                                 }
                             }
                             else{
-                                printf("Failed To Copy...\n");
+                                printf("Failed To Copy.\n");
                             }
                         }
                         else{
-                            printf("Couldn't Find rootfsout.dmg\n");
+                            printf("Couldn't Find rootfsout.dmg, does it exist?\n");
                             return 1;
                         }
                     }
                     else{
-                        printf("Failed To Attach Disk..\n");
+                        printf("Failed Attaching Disk..\n");
                         exit(1);
                     }
                 }
@@ -209,7 +209,7 @@ int main() {
                         }
                     }
                     else{
-                        printf("Could Not Retrieve & Backup FSTAB\n");
+                        printf("Could not Retrieve & Backup FSTAB\n");
                         exit(1);
                     }
                     }
@@ -226,11 +226,11 @@ int main() {
                                 printf("FSTAB Sent\n");
                             }
                             else{
-                                printf("Couldnt Find FSTAB..\n");
+                                printf("Couldn't Find FSTAB..\n");
                             }
                         }
                         else{
-                            printf("Couldnt Find Old FSTAB\n");
+                            printf("Couldn't Find Old FSTAB\n");
                         }
                     }
                     else{
@@ -256,11 +256,11 @@ int main() {
                         printf("KB success\n");
                     }
                     else{
-                        printf("debug kb copy failed.. or already run");
+                        printf("Debug kb copy failed.. or already run");
                     }
                 }
                 else{
-                    printf("Operation Has Already Been Run.. Or Some Other Error..\n");
+                    printf("Operation Has Already Ran.. Or Some Other Error..\n");
                 }
                 //cleanup script cleans all files that are not necessary...
                 break;
@@ -271,28 +271,28 @@ int main() {
                     {
                         fclose(fileout);
                         if(macOS_runc("rm iOS.dmg")==0){
-                            printf("Cleaned iOS.dmg\n");
+                            printf("Removed iOS.dmg\n");
                         }
                     }
                     if((fileout = fopen("rootfsout.dmg","r"))!=NULL)
                     {
                         fclose(fileout);
                         if(macOS_runc("rm rootfsout.dmg")==0){
-                            printf("Cleaned rootfsout.dmg\n");
+                            printf("Removed rootfsout.dmg\n");
                         }
                     }
                     if((fileout = fopen("fstab","r"))!=NULL)
                     {
                         fclose(fileout);
                         if(macOS_runc("rm fstab")==0){
-                            printf("Cleaned new FSTAB // Preserved Backup\n");
+                            printf("Removed new FSTAB // Preserved Backup\n");
                         }
                     }
                     if((fileout = fopen("iOSout.tar.gz","r"))!=NULL)
                     {
                         fclose(fileout);
                         if(macOS_runc("rm iOSout.tar.gz")==0){
-                            printf("Cleaned iOSout.tar.gz\n");
+                            printf("Removed iOSout.tar.gz\n");
                         }
                     }
                     printf("Disk Space +1\n");
@@ -313,11 +313,11 @@ int main() {
                         strtok(pecid,"\n");
                         printf("A-STRTOK %s\n",pecid);
                     } else{
-                        printf("Failed To Grab ECID..\n");
+                        printf("Failed To Obtain ECID..\n");
                         exit(1);
                     }
                 } else{
-                    printf("Device Access Could Not Be Established.. Check iPhone Tunnel\n");
+                    printf("Device Access Could Not Be Established, Check iPhone Tunnel\n");
                     exit(1);
                 }
 
@@ -390,7 +390,7 @@ int main() {
                             if(macOS_runc(ibsscom)==0){
                                 printf("iBSS!\n");
                                 //find ibec
-                                printf("Finding ibec\n");
+                                printf("Finding iBEC\n");
                                 char ibec[500];
                                 strcpy(ibec, macos_run_e("find . -xdev -type f -name '*.im4p' | grep iBEC"));
                                 strtok(ibec,"\n");
@@ -425,22 +425,22 @@ int main() {
                                             //need to add trustcache code
                                         }
                                         else{
-                                            printf("Couldnt Find DTRE..\n");
+                                            printf("Unable to find DTRE..\n");
                                             exit(1);
                                         }
                                     }
                                     else{
-                                        printf("Couldnt Find kcache..\n");
+                                        printf("Unable to find kcache..\n");
                                         exit(1);
                                     }
                                 }
                                 else{
-                                    printf("Couldnt Find iBEC..\n");
+                                    printf("Unable to find iBEC..\n");
                                     exit(1);
                                 }
                             }
                             else{
-                                printf("Couldnt Find iBSS..\n");
+                                printf("Unable to find iBSS..\n");
                                 exit(1);
                             }
                             //find trustcache if target is 13,n,above ( take val from rootfs name )
@@ -450,7 +450,7 @@ int main() {
                         }
                     }
                 } else{
-                    printf("IPSW Not Found..\n");
+                    printf("IPSW not found, please insert IPSW into source directory and run again\n");
                 }
                 //use partial zip download to retrieve certain directory.
                 //patch bootchain elements making sure correct tool is used

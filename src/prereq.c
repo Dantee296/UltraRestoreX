@@ -10,7 +10,7 @@ printmenu(){
     printf ("Welcome To iBootX Version %d\n", VER);
     printf ("Debug mode is %d\n", DEBUG);
     printf ("ID %d\n", IOS);
-    printf("Custom->Luke\n");
+    printf("Custom->RC\n");
     printf("-----------------------\n");
 }
 

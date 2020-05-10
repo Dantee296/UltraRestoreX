@@ -262,6 +262,47 @@ int *ios_blob_fetch(char *ptype, char *eciddec, char *boardconf){
         printf("Cannot Find TSSChecker..\n");
     }
 }
+
+int ios_dtre_patch(int iosver,char *dtrein, char *dtreout, char *IM4M){
+    FILE *fileout;
+    //check original dtre is present.
+    if((fileout = fopen(dtrein,"r"))!=NULL)
+    {
+        fclose(fileout);
+        //store command to exec
+        char comm[1200];
+        sprintf(comm,"./img4 -i %s -o .%s1", dtrein, dtreout);
+        printf("PREP COM -> %s\n", comm);
+        if(macOS_runc(comm)==0){
+            printf("Extracted DTRE -> %s1\n", dtreout);
+            char comm2[1200];
+            sprintf(comm2,"./dtrep .%s1 %sP -d && rm .%s1", dtreout, dtreout, dtreout);
+            printf("PREP COM2 -> %s\n", comm2);
+            if(macOS_runc(comm2)==0){
+                printf("PATCH OUT -> %s2\n", dtreout);
+                printf("Packing to IMG4\n");
+                char comm3[1200];
+                sprintf(comm3,"./img4 -i %sP -o %s.img4 -M %s -T rdtr", dtreout, dtreout, IM4M);
+                printf("PREP COM3 -> %s\n", comm3);
+                if (macOS_runc(comm3)==0) {
+                    printf("DTRE, Great Success!\n");
+                } else{
+                    printf("Failed Repack Process.. :(\n");
+                    exit(1);
+                }
+            } else{
+                printf("FAIL PATCHS2\n");
+            }
+            return 0;
+        }
+    } else{
+        printf("ERROR");
+        return 1;
+    }
+
+}
+
+
 //returns major ios version as int
 int ios_ver_check(){
     //add checks to pull iOS version, maybe gotta use grep somewhere, uname?

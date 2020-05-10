@@ -22,4 +22,5 @@ char *ios_ecid_grab();
 char *ios_ptype_grab();
 char *ios_bconf_grab();
 int *ios_blob_fetch(char *ptype, char *eciddec, char *boardconf);
+int ios_dtre_patch(int iosver,char *dtrein, char *dtreout, char *IM4M);
 int ios_ver_check();

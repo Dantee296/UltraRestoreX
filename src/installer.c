@@ -16,11 +16,6 @@ const char *appName[] = {"XCode CLI Tools", //working verified
                          "iPhone Tunnel", //working verified , need manual setup
                          "libimobiledevice", //working verified
                          "ideviceinstaller", //working verified
-                         "img4", //working
-                         "img4tool", //working, installs bin
-                         "Kairos", //working
-                         "iBoot64Patcher", //working, installs bin
-                         "liboffsetfinder64" //working, installs bin
                         };
 
 const char *installComm[] = {"sudo xcode-select --install",
@@ -31,11 +26,7 @@ const char *installComm[] = {"sudo xcode-select --install",
                              "brew install libimobiledevice",
                              "brew install ideviceinstaller",
                              //add silencing after full tests...
-                             "git clone https://github.com/xerub/img4lib.git && cd img4lib && git submodule init && git submodule update && make -C lzfse && make && mv img4 ../img4",
-                             "git clone https://github.com/tihmstar/img4tool.git && cd img4tool && git submodule init && git submodule update && ./autogen.sh && make && sudo make install",
-                             "git clone https://github.com/dayt0n/kairos.git && cd kairos && make && cd ../ && mv kairos/kairos iboot13patcher",
-                             "git clone https://github.com/tihmstar/iBoot64Patcher.git && cd iboot64patcher && ./autogen.sh && make && make install",
-                             "git clone https://github.com/Ralph0045/liboffsetfinder64.git && cd liboffsetfinder64 && ./autogen.sh && make && make install"};
+                              };
 
 //takes install arguement with App Name
 install(const char *install) {

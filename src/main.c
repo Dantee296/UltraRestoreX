@@ -352,9 +352,9 @@ int main() {
                         printf("Failed To Find Valid Board Configuration\n");
                     }
                 }
-
                 if((ios_blob_fetch(ptype,pecid,boardconf)==0)){
-                    printf("Save SHSH2 Success!\n");
+                    printf("Save SHSH2 Success! Generating IM4M\n");
+                    system("img4tool -e -s *.shsh2 -m IM4M");
                 } else{
                     printf("TSSChecker ERROR\n");
                 }
@@ -457,6 +457,20 @@ int main() {
                 break;
             case 13:
                 //patch-bootchain
+                if(1==1){
+                    printf("Preparing...");
+                    char tsys[300];
+                    strcpy(tsys,ios_runc("ls /dev \| cat \| grep -o disk0s1s. \| tail -2 \| head -1"));
+                    strtok(tsys,"\n");
+                    char tprod[300];
+                    strcpy(tprod,ios_ptype_grab());
+                    printf("ConnectAgent Calling...\n");
+                    char connect[1000];
+                    sprintf(connect,"python3 connect.py -i %s 13.3 -d %s -b apl.png",tprod,tsys);
+                    printf("%s",connect);
+                    sleep(120);
+                    system(connect);
+                }
                 break;
             case 15:
                 //temp func for disk remount..

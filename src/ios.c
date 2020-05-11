@@ -15,7 +15,7 @@ int ios_makevol_apfs(char *volname,char *role){
     strcpy(com2, volname);
     char *com3 = "/dev/disk0s1 ";
     char commout[120];
-    sprintf(commout, "%s%s %s %s", com1, com1er, com1e, com2, com3);
+    sprintf(commout, "%s%s %s %s %s", com1, com1er, com1e, com2, com3);
     //Exit code 1 if device cannot connect
     if (hasdeviceaccess() == 1){
         printf("Device Access Not Availible\n");

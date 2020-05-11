@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=gcc -G "CodeBlocks - Unix Makefiles" /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=gcc -G "CodeBlocks - Unix Makefiles" /Users/jamesduffy/Documents/GithubSync/UltraRestoreX/src
 -- The C compiler identification is AppleClang 11.0.3.11030032
 -- Check for working C compiler: /usr/bin/gcc
 -- Check for working C compiler: /usr/bin/gcc -- works
@@ -14,4 +14,4 @@ CMake Warning:
     CMAKE_CXX_COMPILER
 
 
--- Build files have been written to: /Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/cmake-build-debug
+-- Build files have been written to: /Users/jamesduffy/Documents/GithubSync/UltraRestoreX/src/cmake-build-debug

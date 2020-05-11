@@ -158,7 +158,7 @@ int main() {
                 if((ios_send_f("iOSout.tar.gz","/mnt1")==0)){
                     printf("Succesfully Sent VInstall To Device..\n");
                 } else{
-                    printf("Error Sending VInstall..\n");
+                    printf("Error sending VInstall, is your device's SSH key trusted?\n");
                     exit(1);
                 }
                 break;

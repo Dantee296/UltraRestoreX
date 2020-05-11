@@ -165,7 +165,7 @@ int main() {
             case 7:
                 printf("Extracting iOS VDisk\n");
                 if (atoi(ios_runc("tar -xvf /mnt1/iOSout.tar.gz --strip-components=2 -C /mnt1 >/dev/null 2>/dev/null \; echo $?"))==0){
-                    printf("Extract Successfull\n");
+                    printf("Extract Complete\n");
                 }
                 else{
                     printf("Error Extracting\n");

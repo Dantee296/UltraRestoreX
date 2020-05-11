@@ -44,11 +44,11 @@ int main() {
                 installer();
                 break;
             case 2:
-                if(ios_makevol_apfs("SystemB")!=0){
+                if(ios_makevol_apfs("SystemB","r")!=0){
                     printf("An error occured..\n");
                     exit(1);
                 }
-                if(ios_makevol_apfs("DataB")!=0){
+                if(ios_makevol_apfs("DataB","0")!=0){
                     printf("An error occured..\n");
                     exit(1);
                 } else{

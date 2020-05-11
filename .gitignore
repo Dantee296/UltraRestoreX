@@ -8,3 +8,4 @@ src/cmake-build-release/ibootx,internal284
 src/cmake-build-release/iOSout.tar.gz
 src/cmake-build-debug/iOSout.tar.gz
 src/cmake-build-debug/dev
+src/cmake-build-debug/iPhone10,3,iPhone10,6_13.3_17C54_Restore.ipsw

@@ -464,11 +464,15 @@ int main() {
                     strtok(tsys,"\n");
                     char tprod[300];
                     strcpy(tprod,ios_ptype_grab());
+                    strtok(tprod,"\n");
                     printf("ConnectAgent Calling...\n");
                     char connect[1000];
-                    sprintf(connect,"python3 connect.py -i %s 13.3 -d %s -b apl.png",tprod,tsys);
-                    printf("%s",connect);
-                    sleep(120);
+                    sprintf(connect,"python3 connect.py -i %s 13.3 -d %s",tprod,tsys);
+                    printf("%s\n",connect);
+                    printf("%s\n",connect);
+                    printf("%s\n",connect);
+
+                    sleep(100);
                     system(connect);
                 }
                 break;

@@ -1,10 +1,10 @@
-# iBootX. Control Your Device.
+# UltraRestoreX. Control Your Device.
 
-**We are releasing *part of the* iBootX Source Code, so the public can have a further insight into the process and contribute directly to the project. The code we are releasing has been migrated from one of our internal test branches and is currently incomplete. We are going to add many extra comments to the code to fully explain the process, and will soon make a YouTube Video on the process.
+**We are releasing the Project iBootX Source Code, so the public can have a further insight into the process and contribute directly to the project. The code we are releasing has been migrated from one of our stable branches,and the code in this repository is deemed release-ready. We are going to add many extra comments to the code to fully explain the process, and will soon make a YouTube Video and extra YouTube Live sessions to explain the development process.
 We'll continue working on it and publishing new beta's on a casual schedule.**
 
 **To answer the incoming question:
-Is this complete right now - no. We have moved code from one of our incomplete testing branches. We felt that this specific branch was suitable to release at this moment as we could share some unreleased methods with the public, and automate at least half of this process. BUT with that being said, the code is actively being worked on by the team, and now with the knowledge of the public, we hope we are able to fully complete this application.**
+Is this complete right now - yes and no. Our LimitedSupport branch, which can be found in this repository, has support for the iPhone 6, 6Plus, 5S, and some iPod Touch models. This support should actually include all devices that are vulnerable to Checkm8 and are currently running an iOS version below iOS 13. This is due to some changes in the boot process where the FSTAB file has been moved to a part of the bootchain called the DeviceTree, which involves some different patches**
 
 **This release features a previously unreleased method for completing the majority of the iOS install off-device. The RamDisk creation process can now be effectively skipped, saving a lot of time.**
 

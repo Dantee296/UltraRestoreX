@@ -26,13 +26,9 @@ copyfile.h
 sys/sendfile.h
 -
 
-/Users/jamesduffy/Documents/GithubSync/UltraRestoreX/src/ios.h
-
-/Users/jamesduffy/Documents/GithubSync/UltraRestoreX/src/main.c
+/Users/jamesduffy/Documents/GithubSync/UltraRestoreX/src/prereq.c
 header.h
 /Users/jamesduffy/Documents/GithubSync/UltraRestoreX/src/header.h
-ios.h
-/Users/jamesduffy/Documents/GithubSync/UltraRestoreX/src/ios.h
 
 /Users/jamesduffy/Documents/GithubSync/UltraRestoreX/src/ver.h
 

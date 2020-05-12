@@ -3,9 +3,9 @@
 // This header file should be included in all C files and defines version information and other key parameters.
 //
 
-#define VER 02
+#define VER 3
 #define DEBUG 1
-#define IOS 13
+#define IOS 12
 
 #ifndef SRC_VER_H
 #define SRC_VER_H

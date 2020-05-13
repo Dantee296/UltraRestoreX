@@ -59,10 +59,10 @@ int main() {
             case 3:
                 //Make mountpoints - Add check if folder exists, add to ibootxlib
                 if(ios_makedir("/mnt1")!=0){
-                    printf("Directory Already Exists, Skipping\n");
+                    printf("Directory already exists, skipping.\n");
                 }
                 if(ios_makedir("/mnt2")!=0){
-                    printf("Directory Already Exists, Skipping\n");
+                    printf("Directory already exists, skipping.\n");
                 }
                 char SystemB[300];
                 char DataB[300];
@@ -76,29 +76,29 @@ int main() {
                 strcpy(DataB, ios_runc("ls /dev \| cat \| grep -o disk0s1s. \| tail -1"));
                 strtok(DataB,"\n");
                 if(ios_mountdisk(SystemB,mnt1)!=0){
-                    printf("Mounting Error.. Reboot iPhone w/Checkra1n\n");
+                    printf("Mounting error.. Reboot iPhone w/Checkra1n\n");
                     exit(1);
                 }
                 if(ios_mountdisk(DataB,mnt2)!=0){
-                    printf("Mounting Error.. Reboot iPhone w/Checkra1n\n");
+                    printf("Mounting error. Reboot iPhone w/Checkra1n\n");
                     exit(1);
                 }
                 break;
             case 4:
                 printf("Preparing RootFS DMG...\n");
                 if(ios_asr_process("rootfsin.dmg","rootfsout.dmg")==0){
-                    printf("Great Success\n");
+                    printf("RootFS preparation successful.\n");
                 }
                 else{
-                    printf("Error Opening RootFS..\n");
+                    printf("Error opening RootFS\n");
                 }
                 break;
             case 5:
                 printf("Generating iOS VDisk\n");
                 if(macOS_runc("hdiutil create -size 10GB -fs APFS -volname iOS iOS.dmg")==0){
-                    printf("iOS VInstall Disk Created...\n");
+                    printf("iOS VInstall Disk created\n");
                     if(macOS_runc("hdiutil attach iOS.dmg")==0){
-                        printf("Attached Disk\n");
+                        printf("Attached iOS VInstall Disk\n");
                         const char *diskid = macos_run_e("diskutil list | grep -o disk.s. | tail -1");
                         FILE *file;
                         if((file = fopen("rootfsout.dmg","r"))!=NULL){
@@ -107,48 +107,48 @@ int main() {
                                 char diskforfunc[50];
                                 strcpy(diskforfunc,diskid);
                                 strtok(diskforfunc,"\n");
-                                printf("Copy Successful\n");
+                                printf("Copy successful\n");
                                 if(macOS_runc("umount /Volumes/iOS")==0){
-                                    printf("Unmount Complete\nInverting Disk\nEnter User Password:\n");
+                                    printf("Unmount complete\nInverting Disk\nEnter User Password:\n");
                                     if(macOS_apfs_invert(diskforfunc, "rootfsout.dmg")==0){
                                         printf("APFS_Invert Complete\n");
                                         if(macOS_runc("hdiutil attach iOS.dmg")==0){
-                                            printf("Compressing VDisk - This Can Take A While..\n");
+                                            printf("Compressing VDisk - This can take a while..\n");
                                             if(macOS_runc("tar -zcf  iOSout.tar.gz /Volumes/iOS >/dev/null 2>/dev/null")==0){
-                                                printf("Disk Compressed Successfully\nVirtual Install Process Complete\n");
+                                                printf("Disk compressed successfully\nVirtual Install process complete\n");
                                                 exit(0);
                                             }
                                             else{
-                                                printf("Compression Failed.\n");
+                                                printf("Compression failed\n");
                                             }
                                         }
                                         else{
-                                            printf("Failed Remounting Disk\n");
+                                            printf("Error remounting disk, does it exist?\n");
                                         }
                                     } else{
                                         printf("FAIL\n");
                                     }
                                 }
                                 else{
-                                    printf("Failed To Unmount\n");
+                                    printf("Failed to unmount\n");
                                 }
                             }
                             else{
-                                printf("Failed To Copy.\n");
+                                printf("Failed to copy\n");
                             }
                         }
                         else{
-                            printf("Couldn't Find rootfsout.dmg, does it exist?\n");
+                            printf("Couldn't find rootfsout.dmg, does it exist?\n");
                             return 1;
                         }
                     }
                     else{
-                        printf("Failed Attaching Disk..\n");
+                        printf("Failed attaching disk\n");
                         exit(1);
                     }
                 }
                 else{
-                    printf("Disk Could Not Be Created\n");
+                    printf("Error creating disk\n");
                     exit(1);
                 }
                 break;
@@ -156,9 +156,9 @@ int main() {
                 //send file to device.
                 printf("Sending...\nPlease Wait\n");
                 if((ios_send_f("iOSout.tar.gz","/mnt1")==0)){
-                    printf("Succesfully Sent VInstall To Device..\n");
+                    printf("Succesfully Sent VInstall To Device\n");
                 } else{
-                    printf("Error sending VInstall, is your device's SSH key trusted?\n");
+                    printf("Error sending VInstall, is your iDevice's SSH key trusted?\n");
                     exit(1);
                 }
                 break;
@@ -175,7 +175,7 @@ int main() {
             case 8:
                 //patch fstab and configure SEP
                 if(ios_rec_f("/private/etc/fstab","fstab-bak")==0){
-                    printf("Device FSTAB Backed Up To iBootX Dir..\n");
+                    printf("Device FSTAB backed up to iBootX directory..\n");
                     if (macOS_runc("cp fstab-bak fstab")==0){
                         //original data collect
                         //origvar stores original var from fstab.

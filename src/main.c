@@ -76,11 +76,11 @@ int main() {
                 strcpy(DataB, ios_runc("ls /dev \| cat \| grep -o disk0s1s. \| tail -1"));
                 strtok(DataB,"\n");
                 if(ios_mountdisk(SystemB,mnt1)!=0){
-                    printf("Mounting error. Reboot iPhone w/Checkra1n\n");
+                    printf("Mounting error. Reboot iDevice w/Checkra1n\n");
                     exit(1);
                 }
                 if(ios_mountdisk(DataB,mnt2)!=0){
-                    printf("Mounting error. Reboot iPhone w/Checkra1n\n");
+                    printf("Mounting error. Reboot iDevice w/Checkra1n\n");
                     exit(1);
                 }
                 break;
@@ -333,15 +333,15 @@ int main() {
                         //remove newlines
                         strtok(ptype,"\n");
                     } else{
-                        printf("Failed To Find Valid Product Type\n");
+                        printf("Failed to find valid product type\n");
                     }
                 }
 
 
-                printf("Fetching Board Config..\n");
+                printf("Fetching board config..\n");
                 if(hasdeviceaccess()==0){
                     if(ios_bconf_grab()!=1){
-                        printf("Found Valid Board Config!\n");
+                        printf("Found valid board config!\n");
                         //stores found device type
                         //ptype defined at top of main
                         //stop using strcpy
@@ -349,11 +349,11 @@ int main() {
                         //remove newlines
                         strtok(boardconf,"\n");
                     } else{
-                        printf("Failed To Find Valid Board Configuration\n");
+                        printf("Failed to find valid board configuration\n");
                     }
                 }
                 if((ios_blob_fetch(ptype,pecid,boardconf)==0)){
-                    printf("Save SHSH2 Success! Generating IM4M\n");
+                    printf("SHSH2 successfully saved! Generating IM4M\n");
                     system("img4tool -e -s *.shsh2 -m IM4M");
                 } else{
                     printf("TSSChecker ERROR\n");
@@ -361,11 +361,11 @@ int main() {
                 break;
 
             case 12:
-                printf("Extracting IPSW..");
+                printf("Extracting IPSW... Please wait");
                 if (macOS_runc("mv *.ipsw ipsw.zip")==0){
                     macOS_runc("rm -rf fw; mkdir fw");
                     if (macOS_runc("cd fw; unzip ../ipsw.zip")==0){
-                        printf("Extracted IPSW!\nFinding RootFS..\n");
+                        printf("Extracted IPSW!\nFinding RootFS...\n");
                         char rootfs[500];
                         strcpy(rootfs, macos_run_e("find . -xdev -type f -size +1G | grep dmg"));
                         strtok(rootfs,"\n");
@@ -425,28 +425,28 @@ int main() {
                                             //need to add trustcache code
                                         }
                                         else{
-                                            printf("Unable to find DTRE..\n");
+                                            printf("Unable to find DTRE...\n");
                                             exit(1);
                                         }
                                     }
                                     else{
-                                        printf("Unable to find kcache..\n");
+                                        printf("Unable to find kcache...\n");
                                         exit(1);
                                     }
                                 }
                                 else{
-                                    printf("Unable to find iBEC..\n");
+                                    printf("Unable to find iBEC...\n");
                                     exit(1);
                                 }
                             }
                             else{
-                                printf("Unable to find iBSS..\n");
+                                printf("Unable to find iBSS...\n");
                                 exit(1);
                             }
                             //find trustcache if target is 13,n,above ( take val from rootfs name )
 
                         } else{
-                            printf("Something went wrong..");
+                            printf("Something went wrong...");
                         }
                     }
                 } else{
@@ -498,7 +498,7 @@ int main() {
                 }
                 break;
             default:
-                printf("\nOption Not Found\n");
+                printf("\nOption not found\n");
                 sleep(2);
                 main();
         }

@@ -19,7 +19,7 @@ const char *appName[] = {"XCode CLI Tools", //working verified
                         };
 
 const char *installComm[] = {"sudo xcode-select --install",
-                             "echo Install from Brew.SH (this opt has an issue sorry! progress with\nthe rest of the prereqs\nAfter installing from https://brew.sh)",
+                             "echo Install from brew.sh (This option currently has an issue, sorry!\nPlease install from https://brew.sh and proceed with the rest of the prerequisites)",
                              "brew install libusb",
                              "brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb",
                              "curl -o iPhoneTunnel.zip https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/iphonetunnel-mac/iPhoneTunnel2.3-beta1.zip",
@@ -35,7 +35,7 @@ install(const char *install) {
         //!strcmp(string, strings[i])
         if (!strcmp(install, appName[i])) {
             if (DEBUG == 1) {
-                printf("Installing %s In Debug Mode\n", appName[i]);
+                printf("Installing %s in Debug Mode\n", appName[i]);
                 system(installComm[i]);
                 sleep(4); // user can read output before recursive func call.
                 installer();
@@ -46,7 +46,7 @@ install(const char *install) {
 
 void installer(){
     printmenu();
-    printf("Prerequisite Installer - Please Choose From The List Below:\n");
+    printf("Prerequisite Installer - Please choose from the list below:\n");
     for (int i = 0; i < ARRAY_SIZE(appName); i++) {
         printf("%d: %s\n", i+1, appName[i]);
     }

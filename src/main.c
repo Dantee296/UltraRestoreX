@@ -45,11 +45,11 @@ int main() {
                 break;
             case 2:
                 if(ios_makevol_apfs("SystemB","r")!=0){
-                    printf("An error occured..\n");
+                    printf("An error occured...\n");
                     exit(1);
                 }
                 if(ios_makevol_apfs("DataB","0")!=0){
-                    printf("An error occured..\n");
+                    printf("An error occured...\n");
                     exit(1);
                 } else{
                     printf("Great Success\n");
@@ -59,10 +59,10 @@ int main() {
             case 3:
                 //Make mountpoints - Add check if folder exists, add to ibootxlib
                 if(ios_makedir("/mnt1")!=0){
-                    printf("Directory already exists, skipping.\n");
+                    printf("Directory already exists, skipping\n");
                 }
                 if(ios_makedir("/mnt2")!=0){
-                    printf("Directory already exists, skipping.\n");
+                    printf("Directory already exists, skipping\n");
                 }
                 char SystemB[300];
                 char DataB[300];
@@ -76,7 +76,7 @@ int main() {
                 strcpy(DataB, ios_runc("ls /dev \| cat \| grep -o disk0s1s. \| tail -1"));
                 strtok(DataB,"\n");
                 if(ios_mountdisk(SystemB,mnt1)!=0){
-                    printf("Mounting error.. Reboot iPhone w/Checkra1n\n");
+                    printf("Mounting error. Reboot iPhone w/Checkra1n\n");
                     exit(1);
                 }
                 if(ios_mountdisk(DataB,mnt2)!=0){

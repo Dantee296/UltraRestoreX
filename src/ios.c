@@ -18,7 +18,7 @@ int ios_makevol_apfs(char *volname,char *role){
     sprintf(commout, "%s%s %s %s %s", com1, com1er, com1e, com2, com3);
     //Exit code 1 if device cannot connect
     if (hasdeviceaccess() == 1){
-        printf("Device Access Not Availible\n");
+        printf("Unable to access iDevice, is iPhone Tunnel running and turned on?e\n");
         return 1;
     }
     //Exit code 0 from hasdeviceaccess if can connect
@@ -34,7 +34,7 @@ int ios_makevol_apfs(char *volname,char *role){
 int ios_makedir(char *absolutedirectory){
     //Exit code 1 if device cannot connect
     if (hasdeviceaccess() == 1){
-        printf("Device Access Not Availible\n");
+        printf("Unable to access iDevice, is iPhone Tunnel running and turned on?\n");
         exit(1);
         return 1;
     }
@@ -63,7 +63,7 @@ int ios_makedir(char *absolutedirectory){
 //returns char array of output. redirect output to silent and add '; echo $?' to return exit code.
 char *ios_runc(char *command){
     if (hasdeviceaccess()==1){
-        printf("Device Access Not Availible\n");
+        printf("Unable to access iDevice, is iPhone Tunnel running and turned on?\n");
         return 1;
     }
     else if (hasdeviceaccess() == 0){
@@ -94,7 +94,7 @@ int ios_checkdirexists(char *dir){
 //reference such as /mnt1
 int ios_mountdisk(char *diskid, char *mntpnt){
     if (hasdeviceaccess()==1){
-        printf("Device Access Not Availible\n");
+        printf("Unable to access iDevice, is iPhone Tunnel running and turned on?\n");
         return 1;
     }
     else if (hasdeviceaccess()==0){
@@ -132,7 +132,7 @@ int ios_asr_process(char *rootfsdmg, char *rootfsoutdmg){
 
 int ios_send_f(char *filetosend, char *remotedir){
     if (hasdeviceaccess()==1){
-        printf("Device Access Not Availible\n");
+        printf("Unable to access iDevice, is iPhone Tunnel running and turned on?\n");
         return 1;
     }
     else if (hasdeviceaccess() == 0){
@@ -162,7 +162,7 @@ int ios_send_f(char *filetosend, char *remotedir){
 //pull file from device using scp
 int ios_rec_f(char *remotefiledir, char *localfname){
     if (hasdeviceaccess()==1){
-        printf("Device Access Not Availible\n");
+        printf("Unable to access iDevice, is iPhone Tunnel running and turned on?\n");
         return 1;
     }
     else if (hasdeviceaccess() == 0){

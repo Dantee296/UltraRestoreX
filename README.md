@@ -24,4 +24,4 @@ In a future release, I will recompile for a lower minimum operating system versi
 
 
 ## Credits
-I would like to thank a few users, particularly @mcg_29 and @ralph0045 for their guide which inspired me and the team to start this journey to a full, automated, one click dual-boot and downgrade solution. Matthew Pierson for PyBoot, which allowed me to fix one of the bootchain patching steps. @huwusky, @_JaccRob, @davewijk for developing the website and user interface for UltraRestoreX. And many, many more members of the community.
+I would like to thank a few users, particularly @mcg_29 and @ralph0045 for their guide which inspired me and the team to start this journey to a full, automated, one click dual-boot and downgrade solution. Matthew Pierson for PyBoot, which allowed me to fix one of the bootchain patching steps. @lukew_0, @_JaccRob, @davewijk for developing the website and user interface for UltraRestoreX. And many, many more members of the community.

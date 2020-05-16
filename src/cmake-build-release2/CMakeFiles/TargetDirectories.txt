@@ -1,3 +1,0 @@
-/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/cmake-build-release2/CMakeFiles/rebuild_cache.dir
-/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/cmake-build-release2/CMakeFiles/edit_cache.dir
-/Users/jamesduffy/Documents/GithubSync/iBootX-Release/src/cmake-build-release2/CMakeFiles/src.dir

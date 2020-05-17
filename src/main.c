@@ -354,7 +354,8 @@ int main() {
                 }
                 if((ios_blob_fetch(ptype,pecid,boardconf)==0)){
                     printf("SHSH2 successfully saved! Generating IM4M\n");
-                    system("img4tool -e -s *.shsh2 -m IM4M");
+                    printf("Need to add img4tool to prereq's.. run \nimg4tool -e -s *.shsh2 -m IM4M\nIn terminal to generate IM4M for now..");
+                    //system("img4tool -e -s *.shsh2 -m IM4M");
                 } else{
                     printf("TSSChecker ERROR\n");
                 }
